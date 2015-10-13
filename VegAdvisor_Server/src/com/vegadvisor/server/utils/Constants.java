@@ -20,5 +20,10 @@ public class Constants {
 	 * Espacio en blancos
 	 */
 	public static final String BLANK_SPACE = " ";
+	
+	/**
+	 * Slash 
+	 */
+	public static final String SLASH = "/";
 
 }
