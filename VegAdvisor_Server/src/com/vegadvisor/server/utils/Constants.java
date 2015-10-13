@@ -25,5 +25,10 @@ public class Constants {
 	 * Slash 
 	 */
 	public static final String SLASH = "/";
+	
+	/**
+	 * Plus 
+	 */
+	public static final String PLUS = "+";
 
 }
