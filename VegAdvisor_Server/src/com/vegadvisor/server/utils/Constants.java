@@ -11,4 +11,9 @@ package com.vegadvisor.server.utils;
  */
 public class Constants {
 
+	/**
+	 * Blancos
+	 */
+	public static final String BLANKS = "";
+
 }
