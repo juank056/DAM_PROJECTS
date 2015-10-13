@@ -16,4 +16,9 @@ public class Constants {
 	 */
 	public static final String BLANKS = "";
 
+	/**
+	 * Espacio en blancos
+	 */
+	public static final String BLANK_SPACE = " ";
+
 }
