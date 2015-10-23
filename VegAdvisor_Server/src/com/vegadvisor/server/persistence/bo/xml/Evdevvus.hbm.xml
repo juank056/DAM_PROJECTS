@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.vegadvisor.server.persistence.bo.Evdevvus" table="evdevvus" catalog="vegadvisor" optimistic-lock="version">
+        <composite-id name="id" class="com.vegadvisor.server.persistence.bo.EvdevvusId">
+            <key-property name="paicpaiak" type="string">
+                <column name="PAICPAIAK" length="4" />
+            </key-property>
+            <key-property name="ciucciuak" type="string">
+                <column name="CIUCCIUAK" length="12" />
+            </key-property>
+            <key-property name="evefevefk" type="date">
+                <column name="EVEFEVEFK" length="0" />
+            </key-property>
+            <key-property name="evecevenk" type="int">
+                <column name="EVECEVENK" />
+            </key-property>
+            <key-property name="usucusuak" type="string">
+                <column name="USUCUSUAK" length="25" />
+            </key-property>
+        </composite-id>
+        <property name="evuindpvf" type="string">
+            <column name="EVUINDPVF" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

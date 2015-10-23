@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.vegadvisor.server.persistence.bo.Fodreshi" table="fodreshi" catalog="vegadvisor" optimistic-lock="version">
+        <composite-id name="id" class="com.vegadvisor.server.persistence.bo.FodreshiId">
+            <key-property name="hifchifnk" type="int">
+                <column name="HIFCHIFNK" />
+            </key-property>
+            <key-property name="rhfcrhfnk" type="int">
+                <column name="RHFCRHFNK" />
+            </key-property>
+        </composite-id>
+        <property name="usucusuak" type="string">
+            <column name="USUCUSUAK" length="25" not-null="true" />
+        </property>
+        <property name="rhffregff" type="date">
+            <column name="RHFFREGFF" length="0" not-null="true" />
+        </property>
+        <property name="rhfhoratf" type="time">
+            <column name="RHFHORATF" length="0" not-null="true" />
+        </property>
+        <property name="rhfdetaaf" type="string">
+            <column name="RHFDETAAF" length="256" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

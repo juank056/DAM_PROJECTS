@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.vegadvisor.server.persistence.bo.Esdimope" table="esdimope" catalog="vegadvisor" optimistic-lock="version">
+        <composite-id name="id" class="com.vegadvisor.server.persistence.bo.EsdimopeId">
+            <key-property name="estcestnk" type="int">
+                <column name="ESTCESTNK" />
+            </key-property>
+            <key-property name="oesfregfk" type="date">
+                <column name="OESFREGFK" length="0" />
+            </key-property>
+            <key-property name="oescoesnk" type="int">
+                <column name="OESCOESNK" />
+            </key-property>
+            <key-property name="ioecioenk" type="int">
+                <column name="IOECIOENK" />
+            </key-property>
+        </composite-id>
+        <property name="ioerimaaf" type="string">
+            <column name="IOERIMAAF" length="256" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

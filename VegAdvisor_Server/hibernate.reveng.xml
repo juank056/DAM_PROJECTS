@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-catalog="vegadvisor" match-name="chdmensa" />
+	<table-filter match-catalog="vegadvisor" match-name="cspciuda" />
+	<table-filter match-catalog="vegadvisor" match-name="csptiest" />
+	<table-filter match-catalog="vegadvisor" match-name="csptieve" />
+	<table-filter match-catalog="vegadvisor" match-name="csptpais" />
+	<table-filter match-catalog="vegadvisor" match-name="esdimaes" />
+	<table-filter match-catalog="vegadvisor" match-name="esdimope" />
+	<table-filter match-catalog="vegadvisor" match-name="esdopies" />
+	<table-filter match-catalog="vegadvisor" match-name="esmestab" />
+	<table-filter match-catalog="vegadvisor" match-name="evdevvus" />
+	<table-filter match-catalog="vegadvisor" match-name="evdimaev" />
+	<table-filter match-catalog="vegadvisor" match-name="evmevent" />
+	<table-filter match-catalog="vegadvisor" match-name="fodreshi" />
+	<table-filter match-catalog="vegadvisor" match-name="fomhilfo" />
+	<table-filter match-catalog="vegadvisor" match-name="usdcheus" />
+	<table-filter match-catalog="vegadvisor" match-name="usdusubl" />
+	<table-filter match-catalog="vegadvisor" match-name="usmusuar" />
+</hibernate-reverse-engineering>

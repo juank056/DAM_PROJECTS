@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.vegadvisor.server.persistence.bo.Chdmensa" table="chdmensa" catalog="vegadvisor" optimistic-lock="version">
+        <composite-id name="id" class="com.vegadvisor.server.persistence.bo.ChdmensaId">
+            <key-property name="usucusuak" type="string">
+                <column name="USUCUSUAK" length="25" />
+            </key-property>
+            <key-property name="usucusdak" type="string">
+                <column name="USUCUSDAK" length="25" />
+            </key-property>
+            <key-property name="mchfregfk" type="date">
+                <column name="MCHFREGFK" length="0" />
+            </key-property>
+            <key-property name="mchcmchnk" type="int">
+                <column name="MCHCMCHNK" />
+            </key-property>
+        </composite-id>
+        <property name="mchmensaf" type="string">
+            <column name="MCHMENSAF" length="256" not-null="true" />
+        </property>
+        <property name="mchientsf" type="string">
+            <column name="MCHIENTSF" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

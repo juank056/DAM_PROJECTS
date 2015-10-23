@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.vegadvisor.server.persistence.bo.Esmestab" table="esmestab" catalog="vegadvisor" optimistic-lock="version">
+        <id name="estcestnk" type="java.lang.Integer">
+            <column name="ESTCESTNK" />
+            <generator class="identity" />
+        </id>
+        <property name="usucusuak" type="string">
+            <column name="USUCUSUAK" length="25" not-null="true" />
+        </property>
+        <property name="estnestaf" type="string">
+            <column name="ESTNESTAF" length="45" not-null="true" />
+        </property>
+        <property name="tesctesnk" type="int">
+            <column name="TESCTESNK" not-null="true" />
+        </property>
+        <property name="estdireaf" type="string">
+            <column name="ESTDIREAF" length="80" not-null="true" />
+        </property>
+        <property name="estteleaf" type="string">
+            <column name="ESTTELEAF" length="40" not-null="true" />
+        </property>
+        <property name="esthoratf" type="time">
+            <column name="ESTHORATF" length="0" not-null="true" />
+        </property>
+        <property name="esthorctf" type="time">
+            <column name="ESTHORCTF" length="0" not-null="true" />
+        </property>
+        <property name="paicpaiak" type="string">
+            <column name="PAICPAIAK" length="4" not-null="true" />
+        </property>
+        <property name="ciucciuak" type="string">
+            <column name="CIUCCIUAK" length="12" not-null="true" />
+        </property>
+        <property name="estlatinf" type="long">
+            <column name="ESTLATINF" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="estlongnf" type="long">
+            <column name="ESTLONGNF" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="estdestaf" type="string">
+            <column name="ESTDESTAF" length="80" not-null="true" />
+        </property>
+        <property name="estpestnf" type="long">
+            <column name="ESTPESTNF" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="estiactsf" type="string">
+            <column name="ESTIACTSF" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

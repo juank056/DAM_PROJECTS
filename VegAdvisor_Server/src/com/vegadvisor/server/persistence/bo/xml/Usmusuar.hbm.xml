@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.vegadvisor.server.persistence.bo.Usmusuar" table="usmusuar" catalog="vegadvisor" optimistic-lock="version">
+        <id name="usucusuak" type="string">
+            <column name="USUCUSUAK" length="25" />
+            <generator class="assigned" />
+        </id>
+        <property name="usuemaiaf" type="string">
+            <column name="USUEMAIAF" length="60" not-null="true" />
+        </property>
+        <property name="usunusuaf" type="string">
+            <column name="USUNUSUAF" length="30" not-null="true" />
+        </property>
+        <property name="usuapelaf" type="string">
+            <column name="USUAPELAF" length="60" not-null="true" />
+        </property>
+        <property name="usufnacff" type="date">
+            <column name="USUFNACFF" length="0" not-null="true" />
+        </property>
+        <property name="usugenpvf" type="string">
+            <column name="USUGENPVF" length="1" not-null="true" />
+        </property>
+        <property name="usufotoaf" type="string">
+            <column name="USUFOTOAF" length="256" not-null="true" />
+        </property>
+        <property name="usuvegasf" type="string">
+            <column name="USUVEGASF" length="1" not-null="true" />
+        </property>
+        <property name="usuaficaf" type="string">
+            <column name="USUAFICAF" length="256" not-null="true" />
+        </property>
+        <property name="paicpaiak" type="string">
+            <column name="PAICPAIAK" length="4" not-null="true" />
+        </property>
+        <property name="ciucciuak" type="string">
+            <column name="CIUCCIUAK" length="12" not-null="true" />
+        </property>
+        <property name="usuiactsf" type="string">
+            <column name="USUIACTSF" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
