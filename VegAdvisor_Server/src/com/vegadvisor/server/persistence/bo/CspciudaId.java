@@ -7,6 +7,10 @@ package com.vegadvisor.server.persistence.bo;
  */
 public class CspciudaId implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String paicpaiak;
 	private String ciucciuak;
 

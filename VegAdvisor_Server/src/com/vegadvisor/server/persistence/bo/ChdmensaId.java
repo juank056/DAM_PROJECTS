@@ -9,6 +9,10 @@ import java.util.Date;
  */
 public class ChdmensaId implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String usucusuak;
 	private String usucusdak;
 	private Date mchfregfk;
