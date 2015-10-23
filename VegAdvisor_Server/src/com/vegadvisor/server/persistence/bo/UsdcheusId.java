@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class UsdcheusId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String usucusuak;
 	private int estcestnk;
 	private Date chufregfk;
