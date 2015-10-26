@@ -19,5 +19,23 @@
 		<property name="c3p0.max_statements">50</property>
 		<property name="c3p0.min_size">10</property>
 		<property name="c3p0.timeout">100</property>
+		<!-- Mappings -->
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Chdmensa.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Cspciuda.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Csptiest.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Csptieve.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Csptpais.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Esdimaes.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Esdimope.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Esdopies.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Esmestab.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Evdevvus.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Evdimaev.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Evmevent.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Fodreshi.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Fomhilfo.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Usdcheus.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Usdusubl.hbm.xml" />
+		<mapping resource="com/vegadvisor/server/persistence/bo/xml/Usmusuar.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

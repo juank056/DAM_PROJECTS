@@ -11,5 +11,21 @@
 	<!-- Paquete de DAOS que va a escanear -->
 	<context:component-scan base-package="com.vegadvisor.server.persistence.dao.hbm" />
 	<!-- IDs de los Beans que van a ser inyectados -->
-
+	<bean id="chdmensaDao" class="com.vegadvisor.server.persistence.dao.hbm.ChdmensaDAO" />
+	<bean id="cspciudaDao" class="com.vegadvisor.server.persistence.dao.hbm.CspciudaDAO" />
+	<bean id="csptiestDao" class="com.vegadvisor.server.persistence.dao.hbm.CsptiestDAO" />
+	<bean id="csptieveDao" class="com.vegadvisor.server.persistence.dao.hbm.CsptieveDAO" />
+	<bean id="csptpaisDao" class="com.vegadvisor.server.persistence.dao.hbm.CsptpaisDAO" />
+	<bean id="esdimaesDao" class="com.vegadvisor.server.persistence.dao.hbm.EsdimaesDAO" />
+	<bean id="esdimopeDao" class="com.vegadvisor.server.persistence.dao.hbm.EsdimopeDAO" />
+	<bean id="esdopiesDao" class="com.vegadvisor.server.persistence.dao.hbm.EsdopiesDAO" />
+	<bean id="esmestabDao" class="com.vegadvisor.server.persistence.dao.hbm.EsmestabDAO" />
+	<bean id="evdevvusDao" class="com.vegadvisor.server.persistence.dao.hbm.EvdevvusDAO" />
+	<bean id="evdimaevDao" class="com.vegadvisor.server.persistence.dao.hbm.EvdimaevDAO" />
+	<bean id="evmeventDao" class="com.vegadvisor.server.persistence.dao.hbm.EvmeventDAO" />
+	<bean id="fodreshiDao" class="com.vegadvisor.server.persistence.dao.hbm.FodreshiDAO" />
+	<bean id="fomhilfoDao" class="com.vegadvisor.server.persistence.dao.hbm.FomhilfoDAO" />
+	<bean id="usdcheusDao" class="com.vegadvisor.server.persistence.dao.hbm.UsdcheusDAO" />
+	<bean id="usdusublDao" class="com.vegadvisor.server.persistence.dao.hbm.UsdusublDAO" />
+	<bean id="usmusuarDao" class="com.vegadvisor.server.persistence.dao.hbm.UsmusuarDAO" />
 </beans>
