@@ -11,5 +11,5 @@
 	<!-- Paquete de DAOS que va a escanear -->
 	<context:component-scan base-package="com.vegadvisor.server.persistence.dao.hbm" />
 	<!-- IDs de los Beans que van a ser inyectados -->
-	<bean id="chdmensaDao" class="com.vegadvisor.server.persistence.dao.hbm.ChdmensaDAO" />
+	<bean id="userServices" class="com.vegadvisor.server.services.impl.UserServices" />
 </beans>
