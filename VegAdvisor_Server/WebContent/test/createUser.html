@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Prueba - CreateUser</title>
+</head>
+<style>
+.lince_table1 {
+	border-style: solid;
+	border-width: thin;
+	border-color: #FDBA4D;
+	border-spacing: 1px;
+	border-collapse: collapse;
+	padding: 1px;
+	width: auto;
+	background-color: #F2F2F2
+}
+
+.lince_table1 tbody tr {
+	
+}
+
+.lince_table1 tbody tr.odd_row {
+	background-color: #cccccc;
+	color: black;
+}
+
+.lince_table1 tbody tr.even_row {
+	background-color: #f7f7f7;
+	color: black;
+}
+
+.lince_table1 tbody td {
+	border: 1px solid #aaaaaa;
+	white-space: nowrap;
+	padding: 2px;
+}
+
+.lince_table1 .caption {
+	border: 1px solid #aaaaaa;
+	font-weight: bold;
+	background-color: #dce7f6;
+	color: #305881;
+	white-space: nowrap;
+	cursor: default;
+}
+</style>
+<body>
+	<form action="http://localhost:8080/VegAdvisor_Server/rest/user/createUser"
+		method="POST" target="ans">
+		<input name="entity" type="hidden" value="F001" />
+		<table class="lince_table1">
+			<tr>
+				<td><label for="userId">User ID</label></td>
+				<td><input name="userId" /></td>
+			</tr>
+			<tr>
+				<td><label for="userName">Mi nombre es:</label></td>
+				<td><input name="userName" /></td>
+			</tr>
+			<tr>
+				<td><label for="userLastName">Mi apellido es:</label></td>
+				<td><input name="userLastName" /></td>
+			</tr>
+			<tr>
+				<td><label for="email">Email:</label></td>
+				<td><input name="email" /></td>
+			</tr>
+			<tr>
+				<td><label for="password">Contraseña</label></td>
+				<td><input name="password" /></td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="Submit" />
+	</form>
+	RESPUESTA:
+	<iframe id="ans" name="ans" style="width: 100%; height: 70%;">
+</body>
+</html>
