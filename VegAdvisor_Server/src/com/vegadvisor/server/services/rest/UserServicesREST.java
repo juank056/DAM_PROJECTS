@@ -10,8 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.jpos.util.Log;
-
 import com.vegadvisor.server.services.IUserServices;
 import com.vegadvisor.server.services.rest.bo.ReturnValidation;
 import com.vegadvisor.server.utils.LogLogger;
@@ -57,11 +55,11 @@ public class UserServicesREST {
 	public ReturnValidation validateUser(@FormParam("userId") String userId,
 			@FormParam("password") String password) {
 		LogLogger.getInstance(getClass()).logger("Inicia validateUser",
-				Log.DEBUG);
+				LogLogger.DEBUG);
 		// Validamos usuario
 		String[] response = userServices.validateUser(userId, password);
 		LogLogger.getInstance(getClass()).logger("Finaliza validateUser",
-				Log.DEBUG);
+				LogLogger.DEBUG);
 		// Retornamos
 		return new ReturnValidation(response[0], response[1]);
 	}
@@ -91,13 +89,13 @@ public class UserServicesREST {
 			@FormParam("userLastName") String userLastName,
 			@FormParam("email") String email,
 			@FormParam("password") String password) {
-		LogLogger.getInstance(getClass())
-				.logger("Inicia createUser", Log.DEBUG);
+		LogLogger.getInstance(getClass()).logger("Inicia createUser",
+				LogLogger.DEBUG);
 		// Creación usuario
 		String[] response = userServices.createUser(userId, userName,
 				userLastName, email, password);
 		LogLogger.getInstance(getClass()).logger("Finaliza createUser",
-				Log.DEBUG);
+				LogLogger.DEBUG);
 		// Retornamos
 		return new ReturnValidation(response[0], response[1]);
 	}
