@@ -7,6 +7,6 @@ package com.vegadvisor.server.services;
  * @author JuanCamilo
  *
  */
-public interface ChatServices {
+public interface IForumServices {
 
 }
