@@ -38,11 +38,6 @@ public class UserServices implements IUserServices {
 	 * Constructor de servicio
 	 */
 	public UserServices() {
-		// Inicia DAOs
-		usmusuarDao = SpringAppContext.getAppContext().getBean(
-				IUsmusuarDAO.class);
-		usdcheusDao = SpringAppContext.getAppContext().getBean(
-				IUsdcheusDAO.class);
 	}
 
 	/*
@@ -56,6 +51,8 @@ public class UserServices implements IUserServices {
 	public String[] validateUser(String userId, String password) {
 
 		try {
+			// Inicia DAOS
+			initDaos();
 			// Busca el usuario en la base de datos
 			Usmusuar usuar = usmusuarDao.findById(userId);
 			// Revisa si el usuario se ha encontrado
@@ -92,6 +89,8 @@ public class UserServices implements IUserServices {
 	public String[] createUser(String userId, String userName,
 			String userLastName, String email, String password) {
 		try {
+			// Inicia DAOS
+			initDaos();
 			// Buscamos usuario por id
 			Usmusuar usuar = usmusuarDao.findById(userId);
 			if (usuar != null) {/* Usuario ya registrado */
@@ -137,7 +136,7 @@ public class UserServices implements IUserServices {
 			usuar.setUsuiactsf(Constants.ONE);
 			// Guardamos registro de usuario
 			usmusuarDao.save(usuar);
-			//Retorno
+			// Retorno
 			return new String[] { Constants.ONE,
 					MessageBundle.getMessage("com.vegadvisor.user.msj005") };
 		} catch (DAOException e) {/* Ha ocurrido algn error */
@@ -162,6 +161,8 @@ public class UserServices implements IUserServices {
 			String userLastName, String email, String password,
 			Date dateOfBirth, String countryCode, String cityCode,
 			String isVegan, String hobbies) {
+		// Inicia DAOS
+		initDaos();
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -176,7 +177,22 @@ public class UserServices implements IUserServices {
 	@Override
 	public String[] checkInUser(String userId, String establishmentId) {
 		// TODO Auto-generated method stub
+		// Inicia DAOS
+		initDaos();
 		return null;
+	}
+
+	/**
+	 * Inicia los DAos si no han sido iniciados
+	 */
+	private void initDaos() {
+		// Inicia DAOs
+		if (usmusuarDao == null)
+			usmusuarDao = SpringAppContext.getAppContext().getBean(
+					IUsmusuarDAO.class);
+		if (usdcheusDao == null)
+			usdcheusDao = SpringAppContext.getAppContext().getBean(
+					IUsdcheusDAO.class);
 	}
 
 }

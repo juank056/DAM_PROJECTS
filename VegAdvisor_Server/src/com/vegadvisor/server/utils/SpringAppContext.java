@@ -35,13 +35,8 @@ public class SpringAppContext {
 	 * Reconstruye el application context de spring.
 	 */
 	public static void rebuildAppContext() {
-		LogLogger.getInstance(ClassPathXmlApplicationContext.class).logger(
-				"INICIANDO APP CONTEXT", LogLogger.DEBUG);
 		if (appContext == null)
 			appContext = new ClassPathXmlApplicationContext(new String[] {
-					"daos.xml", "services.xml" });
-		LogLogger.getInstance(ClassPathXmlApplicationContext.class).logger(
-				"APP CONTEXT INICIADO", LogLogger.DEBUG);
+					"/daos.xml", "/services.xml" });
 	}
-
 }

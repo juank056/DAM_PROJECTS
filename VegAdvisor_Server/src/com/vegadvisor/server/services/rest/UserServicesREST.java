@@ -34,8 +34,12 @@ public class UserServicesREST {
 	 */
 	public UserServicesREST() {
 		// Inicia servicios de usuario
+		LogLogger.getInstance(getClass()).logger("Inicia UserServicesREST",
+				LogLogger.DEBUG);
 		userServices = SpringAppContext.getAppContext().getBean(
 				IUserServices.class);
+		LogLogger.getInstance(getClass()).logger("UserServicesREST Iniciado",
+				LogLogger.DEBUG);
 	}
 
 	/**
@@ -49,8 +53,7 @@ public class UserServicesREST {
 	 */
 	@POST
 	@Path("/validateUser")
-	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED,
-			MediaType.APPLICATION_JSON })
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ReturnValidation validateUser(@FormParam("userId") String userId,
 			@FormParam("password") String password) {
@@ -81,8 +84,7 @@ public class UserServicesREST {
 	 */
 	@POST
 	@Path("/createUser")
-	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED,
-			MediaType.APPLICATION_JSON })
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ReturnValidation createUser(@FormParam("userId") String userId,
 			@FormParam("userName") String userName,
