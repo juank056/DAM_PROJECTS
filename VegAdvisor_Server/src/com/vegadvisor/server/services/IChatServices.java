@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.vegadvisor.server.persistence.bo.Chdmensa;
 import com.vegadvisor.server.persistence.bo.Usmusuar;
+import com.vegadvisor.server.services.bo.ReturnValidation;
 
 /**
  * @author JuanCamilo
@@ -34,7 +35,7 @@ public interface IChatServices {
 	 *            Contenido del mensaje
 	 * @return Indicador de registro de mensaje ok
 	 */
-	public String[] registerChatMessage(String userIdFrom, String userIdTo,
+	public ReturnValidation registerChatMessage(String userIdFrom, String userIdTo,
 			String content);
 
 	/**

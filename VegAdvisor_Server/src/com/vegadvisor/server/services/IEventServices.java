@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.vegadvisor.server.persistence.bo.Evmevent;
+import com.vegadvisor.server.services.bo.ReturnValidation;
 
 /**
  * Interfaz que define los servicios relacionados con los eventos registrados en
@@ -63,7 +64,7 @@ public interface IEventServices {
 	 *            Tipo de evento
 	 * @return Retorno de validación de creación de evento
 	 */
-	public String[] createEvent(String userId, String countryCode,
+	public ReturnValidation createEvent(String userId, String countryCode,
 			String cityCode, String eventName, Date dateEvent,
 			int establishmentId, double latitud, double longitud,
 			String placeName, int eventType);
@@ -85,7 +86,7 @@ public interface IEventServices {
 	 *            Indicador de participación en el evento
 	 * @return Retorno de validación
 	 */
-	public String[] registerUsersEventParticipation(String countryCode,
+	public ReturnValidation registerUsersEventParticipation(String countryCode,
 			String cityCode, Date eventDate, int eventSec, String userId,
 			String participationInd);
 

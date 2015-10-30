@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.vegadvisor.server.services.rest.bo;
+package com.vegadvisor.server.services.bo;
 
 import java.util.HashMap;
 import java.util.Map;

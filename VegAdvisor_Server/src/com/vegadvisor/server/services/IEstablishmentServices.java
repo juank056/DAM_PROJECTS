@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.vegadvisor.server.persistence.bo.Esmestab;
 import com.vegadvisor.server.services.bo.EstablishmentStatistic;
+import com.vegadvisor.server.services.bo.ReturnValidation;
 
 /**
  * Interfaz que define los servicios relacionados con los establecimientos
@@ -60,7 +61,7 @@ public interface IEstablishmentServices {
 	 *            Indicador de activo
 	 * @return Indicador de creación/actualización y mensaje
 	 */
-	public String[] createOrUpdateEstablishment(int establishmentId,
+	public ReturnValidation createOrUpdateEstablishment(int establishmentId,
 			String companyName, int establishmentType, String address,
 			String phones, String country, String city, double latitud,
 			double longitud, String description, String active);

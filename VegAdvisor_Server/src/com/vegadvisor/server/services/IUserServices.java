@@ -5,6 +5,8 @@ package com.vegadvisor.server.services;
 
 import java.util.Date;
 
+import com.vegadvisor.server.services.bo.ReturnValidation;
+
 /**
  * Interfaz que define los servicios relacionados con los usuarios del sistema
  * 
@@ -26,7 +28,7 @@ public interface IUserServices {
 	 *         String[3] = Pais del usuario<br/>
 	 *         String[4] = Ciudad del usuario<br/>
 	 */
-	public String[] validateUser(String userId, String password);
+	public ReturnValidation validateUser(String userId, String password);
 
 	/**
 	 * Método para crear un nuevo usuario en el sistema
@@ -44,7 +46,7 @@ public interface IUserServices {
 	 * @return String[0] = Indicador de validación(0,1). String[1] = Mensaje de
 	 *         validación
 	 */
-	public String[] createUser(String userId, String userName,
+	public ReturnValidation createUser(String userId, String userName,
 			String userLastName, String email, String password);
 
 	/**
@@ -73,7 +75,7 @@ public interface IUserServices {
 	 * @return String[0] = Indicador de validación(0,1). String[1] = Mensaje de
 	 *         validación
 	 */
-	public String[] updateUser(String userId, String userName,
+	public ReturnValidation updateUser(String userId, String userName,
 			String userLastName, String email, String password,
 			Date dateOfBirth, String countryCode, String cityCode,
 			String isVegan, String hobbies);
@@ -89,6 +91,6 @@ public interface IUserServices {
 	 * @return String[0] = Indicador de validación(0,1). String[1] = Mensaje de
 	 *         validación
 	 */
-	public String[] checkInUser(String userId, String establishmentId);
+	public ReturnValidation checkInUser(String userId, String establishmentId);
 
 }

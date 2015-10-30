@@ -13,6 +13,7 @@ import com.vegadvisor.server.persistence.bo.Usmusuar;
 import com.vegadvisor.server.persistence.dao.IUsdcheusDAO;
 import com.vegadvisor.server.persistence.dao.IUsmusuarDAO;
 import com.vegadvisor.server.services.IUserServices;
+import com.vegadvisor.server.services.bo.ReturnValidation;
 import com.vegadvisor.server.utils.Constants;
 import com.vegadvisor.server.utils.LogLogger;
 import com.vegadvisor.server.utils.MessageBundle;
@@ -54,7 +55,7 @@ public class UserServices implements IUserServices {
 	 *         String[4] = Ciudad del usuario<br/>
 	 */
 	@Override
-	public String[] validateUser(String userId, String password) {
+	public ReturnValidation validateUser(String userId, String password) {
 
 		try {
 			// Inicia DAOS
@@ -64,30 +65,35 @@ public class UserServices implements IUserServices {
 			// Revisa si el usuario se ha encontrado
 			if (usuar == null) {/* Usuario no encontrado */
 				// Retorna con error
-				return new String[] { Constants.ZERO,
-						MessageBundle.getMessage("com.vegadvisor.user.msj001"),
-						Constants.BLANKS, Constants.BLANKS, Constants.BLANKS };
+				return new ReturnValidation(Constants.ZERO,
+						MessageBundle.getMessage("com.vegadvisor.user.msj001"));
 			}
+
 			// Validamos la contraseña del usuario
 			if (!usuar.getUsupassaf().equals(password)) {
 				// Retorna con error
-				return new String[] { Constants.ZERO,
-						MessageBundle.getMessage("com.vegadvisor.user.msj001"),
-						Constants.BLANKS, Constants.BLANKS, Constants.BLANKS };
+				return new ReturnValidation(Constants.ZERO,
+						MessageBundle.getMessage("com.vegadvisor.user.msj001"));
 			}
 			// Retorna ok
-			return new String[] {
-					Constants.ONE,
-					MessageBundle.getMessage("com.vegadvisor.user.msj002"),
+			ReturnValidation response = new ReturnValidation(Constants.ONE,
+					MessageBundle.getMessage("com.vegadvisor.user.msj002"));
+			// Nombre del usuario
+			response.getParams().put(
+					Constants.USER_NAME,
 					usuar.getUsunusuaf() + Constants.BLANK_SPACE
-							+ usuar.getUsuapelaf(), usuar.getPaicpaiak(),
-					usuar.getCiucciuak() };
+							+ usuar.getUsuapelaf());
+			// Pais del usuario
+			response.getParams().put(Constants.USER_COUNTRY,
+					usuar.getPaicpaiak());
+			// Ciudad del usuario
+			response.getParams().put(Constants.USER_CITY, usuar.getCiucciuak());
+			return response;
 		} catch (Exception e) {/* Ha ocurrido un error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
-			return new String[] { Constants.ZERO,
-					MessageBundle.getMessage("com.vegadvisor.util.apperror"),
-					Constants.BLANKS, Constants.BLANKS, Constants.BLANKS };
+			return new ReturnValidation(Constants.ZERO,
+					MessageBundle.getMessage("com.vegadvisor.util.apperror"));
 		}
 	}
 
@@ -99,7 +105,7 @@ public class UserServices implements IUserServices {
 	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public String[] createUser(String userId, String userName,
+	public ReturnValidation createUser(String userId, String userName,
 			String userLastName, String email, String password) {
 		try {
 			// Inicia DAOS
@@ -108,15 +114,15 @@ public class UserServices implements IUserServices {
 			Usmusuar usuar = usmusuarDao.findById(userId);
 			if (usuar != null) {/* Usuario ya registrado */
 				// Retornamos error
-				return new String[] { Constants.ZERO,
-						MessageBundle.getMessage("com.vegadvisor.user.msj003") };
+				return new ReturnValidation(Constants.ZERO,
+						MessageBundle.getMessage("com.vegadvisor.user.msj003"));
 			}
 			// Buscar el usuario por email
 			List<Usmusuar> usuars = usmusuarDao.findByEmail(email);
 			if (usuars.size() > 0) {
 				// Retornamos error
-				return new String[] { Constants.ZERO,
-						MessageBundle.getMessage("com.vegadvisor.user.msj004") };
+				return new ReturnValidation(Constants.ZERO,
+						MessageBundle.getMessage("com.vegadvisor.user.msj004"));
 			}
 			// Creamos nuevo registro de usuario
 			usuar = new Usmusuar();
@@ -150,13 +156,13 @@ public class UserServices implements IUserServices {
 			// Guardamos registro de usuario
 			usmusuarDao.save(usuar);
 			// Retorno
-			return new String[] { Constants.ONE,
-					MessageBundle.getMessage("com.vegadvisor.user.msj005") };
+			return new ReturnValidation(Constants.ONE,
+					MessageBundle.getMessage("com.vegadvisor.user.msj005"));
 		} catch (DAOException e) {/* Ha ocurrido algn error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
-			return new String[] { Constants.ZERO,
-					MessageBundle.getMessage("com.vegadvisor.util.apperror") };
+			return new ReturnValidation(Constants.ZERO,
+					MessageBundle.getMessage("com.vegadvisor.util.apperror"));
 		}
 	}
 
@@ -170,7 +176,7 @@ public class UserServices implements IUserServices {
 	 * java.lang.String)
 	 */
 	@Override
-	public String[] updateUser(String userId, String userName,
+	public ReturnValidation updateUser(String userId, String userName,
 			String userLastName, String email, String password,
 			Date dateOfBirth, String countryCode, String cityCode,
 			String isVegan, String hobbies) {
@@ -188,7 +194,7 @@ public class UserServices implements IUserServices {
 	 * , java.lang.String)
 	 */
 	@Override
-	public String[] checkInUser(String userId, String establishmentId) {
+	public ReturnValidation checkInUser(String userId, String establishmentId) {
 		// TODO Auto-generated method stub
 		// Inicia DAOS
 		initDaos();

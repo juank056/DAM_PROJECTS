@@ -57,6 +57,11 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 	protected boolean reuseSession;
 
 	/**
+	 * Maximo Tamaño para limpiar
+	 */
+	private static final int MAX_SIZE_CLEAN = 1000;
+
+	/**
 	 * Constructor
 	 * 
 	 * @param clase
@@ -283,6 +288,12 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 			if (!reuseSession)/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+		// Revisa si limpia objetos
+		if (objects.size() < MAX_SIZE_CLEAN) {
+			for (T object : objects) {
+				object.cleanObject();
+			}
+		}
 		return objects;
 	}
 
@@ -393,6 +404,12 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 			if (!reuseSession)/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+		// Revisa si limpia objetos
+		if (objects.size() < MAX_SIZE_CLEAN) {
+			for (T object : objects) {
+				object.cleanObject();
+			}
+		}
 		return objects;
 	}
 
@@ -437,6 +454,12 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 		} finally {
 			if (!reuseSession)/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
+		}
+		// Revisa si limpia objetos
+		if (objects.size() < MAX_SIZE_CLEAN) {
+			for (T object : objects) {
+				object.cleanObject();
+			}
 		}
 		return objects;
 	}
@@ -487,6 +510,12 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 			if (!reuseSession)/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+		// Revisa si limpia objetos
+		if (objects.size() < MAX_SIZE_CLEAN) {
+			for (T object : objects) {
+				object.cleanObject();
+			}
+		}
 		return objects;
 	}
 
@@ -534,6 +563,12 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 		} finally {
 			if (!reuseSession)/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
+		}
+		// Revisa si limpia objetos
+		if (objects.size() < MAX_SIZE_CLEAN) {
+			for (T object : objects) {
+				object.cleanObject();
+			}
 		}
 		return objects;
 	}
@@ -583,6 +618,12 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 		} finally {
 			if (!reuseSession)/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
+		}
+		// Revisa si limpia objetos
+		if (objects.size() < MAX_SIZE_CLEAN) {
+			for (T object : objects) {
+				object.cleanObject();
+			}
 		}
 		return objects;
 	}
@@ -635,6 +676,12 @@ public class GenericHbmDAO<T extends AbstractBO<PK>, PK extends Serializable>
 		} finally {
 			if (!reuseSession)/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
+		}
+		// Revisa si limpia objetos
+		if (objects.size() < MAX_SIZE_CLEAN) {
+			for (T object : objects) {
+				object.cleanObject();
+			}
 		}
 		return objects;
 	}

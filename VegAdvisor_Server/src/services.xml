@@ -11,5 +11,13 @@
 	<!-- Paquete de Servicios que va a escanear -->
 	<context:component-scan base-package="com.vegadvisor.server.services.impl" />
 	<!-- IDs de los Beans que van a ser inyectados -->
-	<bean id="userServices" class="com.vegadvisor.server.services.impl.UserServices" />
+	<bean id="UserServices" class="com.vegadvisor.server.services.impl.UserServices" />
+	<bean id="BasicTablesServices" class="com.vegadvisor.server.services.impl.BasicTablesServices" />
+	<bean id="ChatServices" class="com.vegadvisor.server.services.impl.ChatServices" />
+	<bean id="EstablishmentServices"
+		class="com.vegadvisor.server.services.impl.EstablishmentServices" />
+	<bean id="EventServices" class="com.vegadvisor.server.services.impl.EventServices" />
+	<bean id="ForumServices" class="com.vegadvisor.server.services.impl.ForumServices" />
+	<bean id="ImageServices" class="com.vegadvisor.server.services.impl.ImageServices" />
+	<bean id="OpinionServices" class="com.vegadvisor.server.services.impl.OpinionServices" />
 </beans>
