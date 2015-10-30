@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.vegadvisor.server.services.IUserServices;
 import com.vegadvisor.server.services.rest.bo.ReturnValidation;
+import com.vegadvisor.server.utils.Constants;
 import com.vegadvisor.server.utils.LogLogger;
 import com.vegadvisor.server.utils.SpringAppContext;
 
@@ -61,11 +62,21 @@ public class UserServicesREST {
 		LogLogger.getInstance(getClass()).logger("Inicia validateUser",
 				LogLogger.DEBUG);
 		// Validamos usuario
-		String[] response = userServices.validateUser(userId, password);
+		String[] responseS = userServices.validateUser(userId, password);
+		// Retorno de validación
+		ReturnValidation response = new ReturnValidation(responseS[0],
+				responseS[1]);
+		// Adiciona datos del usuario
+		// Nombre del usuario
+		response.getParams().put(Constants.USER_NAME, responseS[2]);
+		// Pais del usuario
+		response.getParams().put(Constants.USER_COUNTRY, responseS[3]);
+		// Ciudad del usuario
+		response.getParams().put(Constants.USER_CITY, responseS[4]);
 		LogLogger.getInstance(getClass()).logger("Finaliza validateUser",
 				LogLogger.DEBUG);
 		// Retornamos
-		return new ReturnValidation(response[0], response[1]);
+		return response;
 	}
 
 	/**

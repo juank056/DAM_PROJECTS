@@ -6,6 +6,8 @@ package com.vegadvisor.server.services;
 import java.util.Date;
 
 /**
+ * Interfaz que define los servicios relacionados con los usuarios del sistema
+ * 
  * @author JuanCamilo
  *
  */
@@ -18,8 +20,11 @@ public interface IUserServices {
 	 *            Id de usuario
 	 * @param password
 	 *            Contraseña
-	 * @return String[0] = Indicador de Validación (0,1). String[1] = Nombre del
-	 *         usuario
+	 * @return String[0] = Indicador de Validación (0,1).<br/>
+	 *         String[1] = Mensaje de validacion <br/>
+	 *         String[2] = Nombre del usuario<br/>
+	 *         String[3] = Pais del usuario<br/>
+	 *         String[4] = Ciudad del usuario<br/>
 	 */
 	public String[] validateUser(String userId, String password);
 

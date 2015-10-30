@@ -178,4 +178,19 @@ public class Constants {
 	 */
 	public static final String RIGHT_PARENTHESIS = "]";
 
+	/**
+	 * Nombre de usuario
+	 */
+	public static final String USER_NAME = "username";
+
+	/**
+	 * Pais de usuario
+	 */
+	public static final String USER_COUNTRY = "usercountry";
+
+	/**
+	 * Ciudad de usuario
+	 */
+	public static final String USER_CITY = "usercity";
+
 }

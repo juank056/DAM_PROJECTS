@@ -40,12 +40,18 @@ public class UserServices implements IUserServices {
 	public UserServices() {
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método para validar un usuario y su contraseña
 	 * 
-	 * @see
-	 * com.vegadvisor.server.services.IUserServices#validateUser(java.lang.String
-	 * , java.lang.String)
+	 * @param userId
+	 *            Id de usuario
+	 * @param password
+	 *            Contraseña
+	 * @return String[0] = Indicador de Validación (0,1).<br/>
+	 *         String[1] = Mensaje de validacion <br/>
+	 *         String[2] = Nombre del usuario<br/>
+	 *         String[3] = Pais del usuario<br/>
+	 *         String[4] = Ciudad del usuario<br/>
 	 */
 	@Override
 	public String[] validateUser(String userId, String password) {
@@ -59,22 +65,29 @@ public class UserServices implements IUserServices {
 			if (usuar == null) {/* Usuario no encontrado */
 				// Retorna con error
 				return new String[] { Constants.ZERO,
-						MessageBundle.getMessage("com.vegadvisor.user.msj001") };
+						MessageBundle.getMessage("com.vegadvisor.user.msj001"),
+						Constants.BLANKS, Constants.BLANKS, Constants.BLANKS };
 			}
 			// Validamos la contraseña del usuario
 			if (!usuar.getUsupassaf().equals(password)) {
 				// Retorna con error
 				return new String[] { Constants.ZERO,
-						MessageBundle.getMessage("com.vegadvisor.user.msj001") };
+						MessageBundle.getMessage("com.vegadvisor.user.msj001"),
+						Constants.BLANKS, Constants.BLANKS, Constants.BLANKS };
 			}
 			// Retorna ok
-			return new String[] { Constants.ONE,
-					MessageBundle.getMessage("com.vegadvisor.user.msj002") };
+			return new String[] {
+					Constants.ONE,
+					MessageBundle.getMessage("com.vegadvisor.user.msj002"),
+					usuar.getUsunusuaf() + Constants.BLANK_SPACE
+							+ usuar.getUsuapelaf(), usuar.getPaicpaiak(),
+					usuar.getCiucciuak() };
 		} catch (Exception e) {/* Ha ocurrido un error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
 			return new String[] { Constants.ZERO,
-					MessageBundle.getMessage("com.vegadvisor.util.apperror") };
+					MessageBundle.getMessage("com.vegadvisor.util.apperror"),
+					Constants.BLANKS, Constants.BLANKS, Constants.BLANKS };
 		}
 	}
 

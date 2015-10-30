@@ -1,5 +1,13 @@
 package com.vegadvisor.server.persistence.bo;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
+
+import com.vegadvisor.server.persistence.DAOException;
+import com.vegadvisor.server.persistence.dao.IUsmusuarDAO;
+import com.vegadvisor.server.utils.Constants;
+import com.vegadvisor.server.utils.LogLogger;
+import com.vegadvisor.server.utils.SpringAppContext;
+
 // Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1
 
 /**
@@ -14,6 +22,8 @@ public class Chdmensa implements java.io.Serializable, AbstractBO<ChdmensaId> {
 	private ChdmensaId id;
 	private String mchmensaf;
 	private String mchientsf;
+	// Nombre del usuario que ha enviado el mensaje
+	private String senderName;
 
 	public Chdmensa() {
 	}
@@ -48,6 +58,21 @@ public class Chdmensa implements java.io.Serializable, AbstractBO<ChdmensaId> {
 		this.mchientsf = mchientsf;
 	}
 
+	/**
+	 * @return the senderName
+	 */
+	public String getSenderName() {
+		return senderName;
+	}
+
+	/**
+	 * @param senderName
+	 *            the senderName to set
+	 */
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
+
 	@Override
 	public ChdmensaId getPrimaryKey() {
 		return id;
@@ -55,7 +80,19 @@ public class Chdmensa implements java.io.Serializable, AbstractBO<ChdmensaId> {
 
 	@Override
 	public void cleanObject() {
+		try {
+			// Crea dao de usuario
+			IUsmusuarDAO usmusuarDao = SpringAppContext.getAppContext()
+					.getBean(IUsmusuarDAO.class);
+			// obtiene nombre de la persona que envia el mensaje
+			Usmusuar sender = usmusuarDao.findById(id.getUsucusuak());
+			// Asigna nombre
+			senderName = sender.getUsunusuaf() + Constants.BLANK_SPACE
+					+ sender.getUsuapelaf();
+		} catch (DAOException e) {/* Ocurrio error */
+			LogLogger.getInstance(this.getClass()).logger(
+					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
+		}
 
 	}
-
 }
