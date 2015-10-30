@@ -34,12 +34,8 @@ public class UserServicesREST {
 	 */
 	public UserServicesREST() {
 		// Inicia servicios de usuario
-		LogLogger.getInstance(getClass()).logger("Inicia UserServicesREST",
-				LogLogger.DEBUG);
 		userServices = SpringAppContext.getAppContext().getBean(
 				IUserServices.class);
-		LogLogger.getInstance(getClass()).logger("UserServicesREST Iniciado",
-				LogLogger.DEBUG);
 	}
 
 	/**
