@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.vegadvisor.server.utils.Constants;
+
 /**
  * Datos estadisticos de un establecimiento
  * 
@@ -46,6 +48,11 @@ public class EstablishmentStatistic {
 	public EstablishmentStatistic() {
 		// Inicia lista de opiniones
 		this.opinionStars = new ArrayList<Integer>();
+		// Checkins en cero
+		this.checkins = 0;
+		// Id y nombre a default
+		this.establishmentId = 0;
+		this.establishmentName = Constants.BLANKS;
 	}
 
 	/**
@@ -56,7 +63,8 @@ public class EstablishmentStatistic {
 	}
 
 	/**
-	 * @param establishmentId the establishmentId to set
+	 * @param establishmentId
+	 *            the establishmentId to set
 	 */
 	public void setEstablishmentId(int establishmentId) {
 		this.establishmentId = establishmentId;
@@ -70,7 +78,8 @@ public class EstablishmentStatistic {
 	}
 
 	/**
-	 * @param establishmentName the establishmentName to set
+	 * @param establishmentName
+	 *            the establishmentName to set
 	 */
 	public void setEstablishmentName(String establishmentName) {
 		this.establishmentName = establishmentName;
@@ -84,7 +93,8 @@ public class EstablishmentStatistic {
 	}
 
 	/**
-	 * @param day the day to set
+	 * @param day
+	 *            the day to set
 	 */
 	public void setDay(Date day) {
 		this.day = day;
@@ -98,7 +108,8 @@ public class EstablishmentStatistic {
 	}
 
 	/**
-	 * @param checkins the checkins to set
+	 * @param checkins
+	 *            the checkins to set
 	 */
 	public void setCheckins(int checkins) {
 		this.checkins = checkins;
@@ -112,7 +123,8 @@ public class EstablishmentStatistic {
 	}
 
 	/**
-	 * @param opinionStars the opinionStars to set
+	 * @param opinionStars
+	 *            the opinionStars to set
 	 */
 	public void setOpinionStars(List<Integer> opinionStars) {
 		this.opinionStars = opinionStars;

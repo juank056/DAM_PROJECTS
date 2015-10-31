@@ -3,44 +3,46 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.vegadvisor.server.persistence.bo.Evmevent" table="evmevent" catalog="vegadvisor" optimistic-lock="version">
-        <composite-id name="id" class="com.vegadvisor.server.persistence.bo.EvmeventId">
-            <key-property name="paicpaiak" type="string">
-                <column name="PAICPAIAK" length="4" />
-            </key-property>
-            <key-property name="ciucciuak" type="string">
-                <column name="CIUCCIUAK" length="12" />
-            </key-property>
-            <key-property name="evefevefk" type="date">
-                <column name="EVEFEVEFK" length="0" />
-            </key-property>
-            <key-property name="evecevenk" type="int">
-                <column name="EVECEVENK" />
-            </key-property>
-        </composite-id>
-        <property name="usucusuak" type="string">
-            <column name="USUCUSUAK" length="25" not-null="true" />
-        </property>
-        <property name="estcestnk" type="int">
-            <column name="ESTCESTNK" not-null="true" />
-        </property>
-        <property name="estloceaf" type="string">
-            <column name="ESTLOCEAF" length="60" not-null="true" />
-        </property>
-        <property name="evelatinf" type="long">
-            <column name="EVELATINF" precision="10" scale="0" not-null="true" />
-        </property>
-        <property name="evelongnf" type="long">
-            <column name="EVELONGNF" precision="10" scale="0" not-null="true" />
-        </property>
-        <property name="tevctevnk" type="int">
-            <column name="TEVCTEVNK" not-null="true" />
-        </property>
-        <property name="evedeveaf" type="string">
-            <column name="EVEDEVEAF" length="256" not-null="true" />
-        </property>
-        <property name="evenparnf" type="int">
-            <column name="EVENPARNF" not-null="true" />
-        </property>
-    </class>
+	<class name="com.vegadvisor.server.persistence.bo.Evmevent"
+		table="evmevent" catalog="vegadvisor" optimistic-lock="version">
+		<composite-id name="id"
+			class="com.vegadvisor.server.persistence.bo.EvmeventId">
+			<key-property name="paicpaiak" type="string">
+				<column name="PAICPAIAK" length="4" />
+			</key-property>
+			<key-property name="ciucciuak" type="string">
+				<column name="CIUCCIUAK" length="12" />
+			</key-property>
+			<key-property name="evefevefk" type="date">
+				<column name="EVEFEVEFK" length="0" />
+			</key-property>
+			<key-property name="evecevenk" type="int">
+				<column name="EVECEVENK" />
+			</key-property>
+		</composite-id>
+		<property name="usucusuak" type="string">
+			<column name="USUCUSUAK" length="25" not-null="true" />
+		</property>
+		<property name="estcestnk" type="int">
+			<column name="ESTCESTNK" not-null="true" />
+		</property>
+		<property name="estloceaf" type="string">
+			<column name="ESTLOCEAF" length="60" not-null="true" />
+		</property>
+		<property name="evelatinf" type="double">
+			<column name="EVELATINF" not-null="true" />
+		</property>
+		<property name="evelongnf" type="double">
+			<column name="EVELONGNF" not-null="true" />
+		</property>
+		<property name="tevctevnk" type="int">
+			<column name="TEVCTEVNK" not-null="true" />
+		</property>
+		<property name="evedeveaf" type="string">
+			<column name="EVEDEVEAF" length="256" not-null="true" />
+		</property>
+		<property name="evenparnf" type="int">
+			<column name="EVENPARNF" not-null="true" />
+		</property>
+	</class>
 </hibernate-mapping>

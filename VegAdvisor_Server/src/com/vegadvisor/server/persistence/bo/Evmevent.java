@@ -15,8 +15,8 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	private String usucusuak;
 	private int estcestnk;
 	private String estloceaf;
-	private long evelatinf;
-	private long evelongnf;
+	private double evelatinf;
+	private double evedoublenf;
 	private int tevctevnk;
 	private String evedeveaf;
 	private int evenparnf;
@@ -27,14 +27,14 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	}
 
 	public Evmevent(EvmeventId id, String usucusuak, int estcestnk,
-			String estloceaf, long evelatinf, long evelongnf, int tevctevnk,
-			String evedeveaf, int evenparnf) {
+			String estloceaf, double evelatinf, double evedoublenf,
+			int tevctevnk, String evedeveaf, int evenparnf) {
 		this.id = id;
 		this.usucusuak = usucusuak;
 		this.estcestnk = estcestnk;
 		this.estloceaf = estloceaf;
 		this.evelatinf = evelatinf;
-		this.evelongnf = evelongnf;
+		this.evedoublenf = evedoublenf;
 		this.tevctevnk = tevctevnk;
 		this.evedeveaf = evedeveaf;
 		this.evenparnf = evenparnf;
@@ -72,20 +72,20 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 		this.estloceaf = estloceaf;
 	}
 
-	public long getEvelatinf() {
+	public double getEvelatinf() {
 		return this.evelatinf;
 	}
 
-	public void setEvelatinf(long evelatinf) {
+	public void setEvelatinf(double evelatinf) {
 		this.evelatinf = evelatinf;
 	}
 
-	public long getEvelongnf() {
-		return this.evelongnf;
+	public double getEvedoublenf() {
+		return this.evedoublenf;
 	}
 
-	public void setEvelongnf(long evelongnf) {
-		this.evelongnf = evelongnf;
+	public void setEvedoublenf(double evedoublenf) {
+		this.evedoublenf = evedoublenf;
 	}
 
 	public int getTevctevnk() {
@@ -120,7 +120,8 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	}
 
 	/**
-	 * @param userParticipating the userParticipating to set
+	 * @param userParticipating
+	 *            the userParticipating to set
 	 */
 	public void setUserParticipating(String userParticipating) {
 		this.userParticipating = userParticipating;

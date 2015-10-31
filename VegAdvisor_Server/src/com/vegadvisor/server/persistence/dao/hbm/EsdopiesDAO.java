@@ -3,10 +3,15 @@
  */
 package com.vegadvisor.server.persistence.dao.hbm;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -76,5 +81,28 @@ public class EsdopiesDAO extends GenericHbmDAO<Esdopies, EsdopiesId> implements
 			if (!this.getReuseSession())/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+	}
+
+	/**
+	 * Busca opiniones de usuarios en un establecmiento para un rango de fechas
+	 * 
+	 * @param estcestnk
+	 *            Id del establecimiento a buscar
+	 * @param sinceDate
+	 *            fecha desde de la busqueda
+	 * @param untilDate
+	 *            fecha hasta de la busqueda
+	 * @return Lista de opiniones de usuarios en el rango establecido
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Esdopies> findByRange(int estcestnk, Date sinceDate,
+			Date untilDate) throws DAOException {
+		// Crea los criterios
+		List<Criterion> crit = new ArrayList<Criterion>();
+		crit.add(Restrictions.eq("id.estcestnk", estcestnk));
+		crit.add(Restrictions.ge("id.oesfregfk", sinceDate));
+		crit.add(Restrictions.le("id.oesfregfk", untilDate));
+		return this.findByCriteria(crit);
 	}
 }

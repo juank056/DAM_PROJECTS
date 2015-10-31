@@ -3,9 +3,14 @@
  */
 package com.vegadvisor.server.persistence.dao.hbm;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -77,5 +82,28 @@ public class UsdcheusDAO extends GenericHbmDAO<Usdcheus, UsdcheusId> implements
 			if (!this.getReuseSession())/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+	}
+
+	/**
+	 * Busca checkins de usuarios en un establecmiento para un rango de fechas
+	 * 
+	 * @param estcestnk
+	 *            Id del establecimiento a buscar
+	 * @param sinceDate
+	 *            fecha desde de la busqueda
+	 * @param untilDate
+	 *            fecha hasta de la busqueda
+	 * @return Lista de checkins de usuarios en el rango establecido
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Usdcheus> findByRange(int estcestnk, Date sinceDate,
+			Date untilDate) throws DAOException {
+		// Crea los criterios
+		List<Criterion> crit = new ArrayList<Criterion>();
+		crit.add(Restrictions.eq("id.estcestnk", estcestnk));
+		crit.add(Restrictions.ge("id.chufregfk", sinceDate));
+		crit.add(Restrictions.le("id.chufregfk", untilDate));
+		return this.findByCriteria(crit);
 	}
 }

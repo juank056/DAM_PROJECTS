@@ -39,6 +39,8 @@ public interface IEstablishmentServices {
 	 * 
 	 * @param establishmentId
 	 *            Id del establecimiento (cero es para creación)
+	 * @param userId
+	 *            Usuario que crea el establecimiento
 	 * @param companyName
 	 *            Nombre del establecimiento
 	 * @param establishmentType
@@ -47,6 +49,10 @@ public interface IEstablishmentServices {
 	 *            Dirección del establecimiento
 	 * @param phones
 	 *            Teléfonos del establecimiento
+	 * @param openingTime
+	 *            Horario de apertura
+	 * @param closingTime
+	 *            Horario de cierre
 	 * @param country
 	 *            Código de pais
 	 * @param city
@@ -62,9 +68,10 @@ public interface IEstablishmentServices {
 	 * @return Indicador de creación/actualización y mensaje
 	 */
 	public ReturnValidation createOrUpdateEstablishment(int establishmentId,
-			String companyName, int establishmentType, String address,
-			String phones, String country, String city, double latitud,
-			double longitud, String description, String active);
+			String userId, String companyName, int establishmentType,
+			String address, String phones, Date openingTime, Date closingTime,
+			String country, String city, double latitud, double longitud,
+			String description, String active);
 
 	/**
 	 * Obtiene lista de los establecimientos de un usuario
