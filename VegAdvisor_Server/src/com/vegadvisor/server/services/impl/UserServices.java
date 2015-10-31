@@ -9,12 +9,15 @@ import java.util.List;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
 import com.vegadvisor.server.persistence.DAOException;
+import com.vegadvisor.server.persistence.bo.Usdcheus;
+import com.vegadvisor.server.persistence.bo.UsdcheusId;
 import com.vegadvisor.server.persistence.bo.Usmusuar;
 import com.vegadvisor.server.persistence.dao.IUsdcheusDAO;
 import com.vegadvisor.server.persistence.dao.IUsmusuarDAO;
 import com.vegadvisor.server.services.IUserServices;
 import com.vegadvisor.server.services.bo.ReturnValidation;
 import com.vegadvisor.server.utils.Constants;
+import com.vegadvisor.server.utils.DateUtils;
 import com.vegadvisor.server.utils.LogLogger;
 import com.vegadvisor.server.utils.MessageBundle;
 import com.vegadvisor.server.utils.SpringAppContext;
@@ -36,9 +39,16 @@ public class UserServices implements IUserServices {
 	private IUsdcheusDAO usdcheusDao;
 
 	/**
+	 * Indicador de Daos iniciados
+	 */
+	private boolean daosInicialized;
+
+	/**
 	 * Constructor de servicio
 	 */
 	public UserServices() {
+		// Daos iniciados en false
+		this.daosInicialized = false;
 	}
 
 	/**
@@ -48,11 +58,7 @@ public class UserServices implements IUserServices {
 	 *            Id de usuario
 	 * @param password
 	 *            Contraseña
-	 * @return String[0] = Indicador de Validación (0,1).<br/>
-	 *         String[1] = Mensaje de validacion <br/>
-	 *         String[2] = Nombre del usuario<br/>
-	 *         String[3] = Pais del usuario<br/>
-	 *         String[4] = Ciudad del usuario<br/>
+	 * @return Indicador de validación
 	 */
 	@Override
 	public ReturnValidation validateUser(String userId, String password) {
@@ -97,12 +103,20 @@ public class UserServices implements IUserServices {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método para crear un nuevo usuario en el sistema
 	 * 
-	 * @see
-	 * com.vegadvisor.server.services.IUserServices#createUser(java.lang.String,
-	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * @param userId
+	 *            Id del usuario a crear
+	 * @param userName
+	 *            Nombre de usuario
+	 * @param userLastName
+	 *            Apellido del usuario
+	 * @param email
+	 *            Email del usuario
+	 * @param password
+	 *            Contraseña del usuario
+	 * @return Indicador de validación
 	 */
 	@Override
 	public ReturnValidation createUser(String userId, String userName,
@@ -166,52 +180,132 @@ public class UserServices implements IUserServices {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método para actualizar los datos de un usuario
 	 * 
-	 * @see
-	 * com.vegadvisor.server.services.IUserServices#updateUser(java.lang.String,
-	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
-	 * java.util.Date, java.lang.String, java.lang.String, java.lang.String,
-	 * java.lang.String)
+	 * @param userId
+	 *            Id del usuario a crear
+	 * @param userName
+	 *            Nombre de usuario
+	 * @param userLastName
+	 *            Apellido del usuario
+	 * @param email
+	 *            Email del usuario
+	 * @param password
+	 *            Contraseña del usuario
+	 * @param dateOfBirth
+	 *            Fecha de nacimiento
+	 * @param countryCode
+	 *            Código de pais
+	 * @param cityCode
+	 *            Código de ciudad
+	 * @param isVegan
+	 *            Indicador de vegano
+	 * @param hobbies
+	 *            Hobbies de la persona
+	 * @param gender
+	 *            Genero de la persona
+	 * @return Indicador de validación
 	 */
 	@Override
 	public ReturnValidation updateUser(String userId, String userName,
 			String userLastName, String email, String password,
 			Date dateOfBirth, String countryCode, String cityCode,
-			String isVegan, String hobbies) {
-		// Inicia DAOS
-		initDaos();
-		// TODO Auto-generated method stub
-		return null;
+			String isVegan, String hobbies, String gender) {
+		try {
+			// Inicia DAOS
+			initDaos();
+			// Buscamos usuario por id
+			Usmusuar usuar = usmusuarDao.findById(userId);
+			if (usuar == null) {/* Usuario NO Encontrado */
+				// Retornamos error
+				return new ReturnValidation(Constants.ZERO,
+						MessageBundle.getMessage("com.vegadvisor.user.msj006"));
+			}
+			// Actualizamos valores
+			// Email
+			usuar.setUsuemaiaf(email);
+			// Nombre
+			usuar.setUsunusuaf(userName);
+			// Apellido
+			usuar.setUsuapelaf(userLastName);
+			// Contraseña
+			usuar.setUsupassaf(password);
+			// Fecha de nacimiento
+			usuar.setUsufnacff(dateOfBirth);
+			// Genero
+			usuar.setUsugenpvf(gender);
+			// Es vegano
+			usuar.setUsuvegasf(isVegan);
+			// Aficiones
+			usuar.setUsuaficaf(hobbies);
+			// Pais
+			usuar.setPaicpaiak(countryCode);
+			// Ciudad
+			usuar.setCiucciuak(cityCode);
+			// Actualizamos registro de usuario
+			usmusuarDao.update(usuar);
+			// Retorno
+			return new ReturnValidation(Constants.ONE,
+					MessageBundle.getMessage("com.vegadvisor.util.msj002"));
+		} catch (DAOException e) {/* Ha ocurrido algn error */
+			LogLogger.getInstance(this.getClass()).logger(
+					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
+			return new ReturnValidation(Constants.ZERO,
+					MessageBundle.getMessage("com.vegadvisor.util.apperror"));
+		}
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Método para registrar el check in de un usuario dentro de un
+	 * establecimiento
 	 * 
-	 * @see
-	 * com.vegadvisor.server.services.IUserServices#checkInUser(java.lang.String
-	 * , java.lang.String)
+	 * @param userId
+	 *            Id del usuario
+	 * @param establishmentId
+	 *            Id del establecimiento
+	 * @return Indicador de validación
 	 */
 	@Override
-	public ReturnValidation checkInUser(String userId, String establishmentId) {
-		// TODO Auto-generated method stub
-		// Inicia DAOS
-		initDaos();
-		return null;
+	public ReturnValidation checkInUser(String userId, int establishmentId) {
+		try {
+			// Inicia DAOS
+			initDaos();
+			// Crea registro de check-in
+			Usdcheus cheus = new Usdcheus();
+			// Crea llave
+			UsdcheusId id = new UsdcheusId(userId, establishmentId,
+					DateUtils.getCurrentUtilDate(), 0);
+			// Asigna id
+			cheus.setId(id);
+			// Hora
+			cheus.setChuhoratf(DateUtils.getCurrentUtilDate());
+			// Guarda registro en la base de datos
+			usdcheusDao.save(cheus);
+			// Retorno
+			return new ReturnValidation(Constants.ONE,
+					MessageBundle.getMessage("com.vegadvisor.util.msj001"));
+		} catch (DAOException e) {/* Ha ocurrido algn error */
+			LogLogger.getInstance(this.getClass()).logger(
+					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
+			return new ReturnValidation(Constants.ZERO,
+					MessageBundle.getMessage("com.vegadvisor.util.apperror"));
+		}
 	}
 
 	/**
 	 * Inicia los DAos si no han sido iniciados
 	 */
 	private void initDaos() {
-		// Inicia DAOs
-		if (usmusuarDao == null)
+		// Inicia DAOs si no han sido iniciados
+		if (!daosInicialized) {
 			usmusuarDao = SpringAppContext.getAppContext().getBean(
 					IUsmusuarDAO.class);
-		if (usdcheusDao == null)
 			usdcheusDao = SpringAppContext.getAppContext().getBean(
 					IUsdcheusDAO.class);
+			// Daos iniciados a true
+			daosInicialized = true;
+		}
 	}
 
 }

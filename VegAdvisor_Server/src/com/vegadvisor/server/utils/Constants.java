@@ -193,4 +193,9 @@ public class Constants {
 	 */
 	public static final String USER_CITY = "usercity";
 
+	/**
+	 * Porcentaje
+	 */
+	public static final String PERCENTAGE = "%";
+
 }

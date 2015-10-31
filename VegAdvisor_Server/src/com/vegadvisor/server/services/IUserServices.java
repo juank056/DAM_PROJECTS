@@ -22,11 +22,7 @@ public interface IUserServices {
 	 *            Id de usuario
 	 * @param password
 	 *            Contraseña
-	 * @return String[0] = Indicador de Validación (0,1).<br/>
-	 *         String[1] = Mensaje de validacion <br/>
-	 *         String[2] = Nombre del usuario<br/>
-	 *         String[3] = Pais del usuario<br/>
-	 *         String[4] = Ciudad del usuario<br/>
+	 * @return Indicador de validación
 	 */
 	public ReturnValidation validateUser(String userId, String password);
 
@@ -43,8 +39,7 @@ public interface IUserServices {
 	 *            Email del usuario
 	 * @param password
 	 *            Contraseña del usuario
-	 * @return String[0] = Indicador de validación(0,1). String[1] = Mensaje de
-	 *         validación
+	 * @return Indicador de validación
 	 */
 	public ReturnValidation createUser(String userId, String userName,
 			String userLastName, String email, String password);
@@ -72,13 +67,14 @@ public interface IUserServices {
 	 *            Indicador de vegano
 	 * @param hobbies
 	 *            Hobbies de la persona
-	 * @return String[0] = Indicador de validación(0,1). String[1] = Mensaje de
-	 *         validación
+	 * @param gender
+	 *            Genero de la persona
+	 * @return Indicador de validación
 	 */
 	public ReturnValidation updateUser(String userId, String userName,
 			String userLastName, String email, String password,
 			Date dateOfBirth, String countryCode, String cityCode,
-			String isVegan, String hobbies);
+			String isVegan, String hobbies, String gender);
 
 	/**
 	 * Método para registrar el check in de un usuario dentro de un
@@ -88,9 +84,8 @@ public interface IUserServices {
 	 *            Id del usuario
 	 * @param establishmentId
 	 *            Id del establecimiento
-	 * @return String[0] = Indicador de validación(0,1). String[1] = Mensaje de
-	 *         validación
+	 * @return Indicador de validación
 	 */
-	public ReturnValidation checkInUser(String userId, String establishmentId);
+	public ReturnValidation checkInUser(String userId, int establishmentId);
 
 }
