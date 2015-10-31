@@ -27,4 +27,15 @@ public interface IUsmusuarDAO extends GenericDAO<Usmusuar, String> {
 	 */
 	public List<Usmusuar> findByEmail(String usuemaiaf) throws DAOException;
 
+	/**
+	 * Busca usuarios por id de usuario like y que esten activos para chat
+	 * 
+	 * @param usucusuak
+	 *            Pista de nombre del usuario
+	 * @return Lista de usuarios que cumplen con los criterios
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Usmusuar> findByNameAndActive(String usucusuak) throws DAOException;
+
 }
