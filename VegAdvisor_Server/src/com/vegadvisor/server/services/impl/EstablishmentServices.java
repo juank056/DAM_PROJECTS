@@ -165,7 +165,7 @@ public class EstablishmentServices implements IEstablishmentServices {
 			// Latitud
 			estab.setEstlatinf(latitud);
 			// Longitud
-			estab.setestlongnf(longitud);
+			estab.setEstlongnf(longitud);
 			// Descripcion
 			estab.setEstdestaf(description);
 			// Activo

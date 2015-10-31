@@ -3,6 +3,10 @@
  */
 package com.vegadvisor.server.persistence.dao.hbm;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -78,5 +82,41 @@ public class EvmeventDAO extends GenericHbmDAO<Evmevent, EvmeventId> implements
 			if (!this.getReuseSession())/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+	}
+
+	/**
+	 * Busca eventos por nombre y por cercania de localización
+	 * 
+	 * @param evedeveaf
+	 *            Nombre del evento de pista
+	 * @param latitud
+	 *            Latitud de referencia
+	 * @param longitud
+	 *            Longitud de referencia
+	 * @param ratio
+	 *            Radio de busqueda
+	 * @return Lista de eventos que cumplen con las condiciones
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Evmevent> findByNameAndPosition(String evedeveaf,
+			double latitud, double longitud, double ratio) throws DAOException {
+		// Inicia parametros de la query
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		// Consulta a realizar
+		String query = "select event from Evmevent event"
+				+ " where event.evedeveaf like %:nomEvent% "
+				+ "having (6371*ACOS(COS( RADIANS(:mylatitud)) * "
+				+ "COS(RADIANS(evelatinf)) * COS(RADIANS(evelongnf) "
+				+ "- RADIANS(:mylongitud) )+ SIN( RADIANS(:mylatitud))"
+				+ "*SIN(RADIANS(evelatinf)))) <= :myratio "
+				+ "order by event.evedeveaf asc";
+		// Asigna parametros
+		parameters.put("mylatitud", latitud);
+		parameters.put("mylongitud", longitud);
+		parameters.put("nomEvent", evedeveaf);
+		parameters.put("myratio", ratio);
+		// Ejecuta consulta
+		return this.findByQuery(query, parameters);
 	}
 }

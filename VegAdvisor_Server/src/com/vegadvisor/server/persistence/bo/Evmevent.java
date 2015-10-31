@@ -16,7 +16,7 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	private int estcestnk;
 	private String estloceaf;
 	private double evelatinf;
-	private double evedoublenf;
+	private double evelongnf;
 	private int tevctevnk;
 	private String evedeveaf;
 	private int evenparnf;
@@ -27,14 +27,14 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	}
 
 	public Evmevent(EvmeventId id, String usucusuak, int estcestnk,
-			String estloceaf, double evelatinf, double evedoublenf,
+			String estloceaf, double evelatinf, double evelongnf,
 			int tevctevnk, String evedeveaf, int evenparnf) {
 		this.id = id;
 		this.usucusuak = usucusuak;
 		this.estcestnk = estcestnk;
 		this.estloceaf = estloceaf;
 		this.evelatinf = evelatinf;
-		this.evedoublenf = evedoublenf;
+		this.evelongnf = evelongnf;
 		this.tevctevnk = tevctevnk;
 		this.evedeveaf = evedeveaf;
 		this.evenparnf = evenparnf;
@@ -80,12 +80,12 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 		this.evelatinf = evelatinf;
 	}
 
-	public double getEvedoublenf() {
-		return this.evedoublenf;
+	public double getevelongnf() {
+		return this.evelongnf;
 	}
 
-	public void setEvedoublenf(double evedoublenf) {
-		this.evedoublenf = evedoublenf;
+	public void setEvelongnf(double evelongnf) {
+		this.evelongnf = evelongnf;
 	}
 
 	public int getTevctevnk() {

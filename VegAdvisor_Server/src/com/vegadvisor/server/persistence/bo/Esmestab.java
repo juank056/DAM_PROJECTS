@@ -141,11 +141,11 @@ public class Esmestab implements java.io.Serializable, AbstractBO<Integer> {
 		this.estlatinf = estlatinf;
 	}
 
-	public double getestlongnf() {
+	public double getEstlongnf() {
 		return this.estlongnf;
 	}
 
-	public void setestlongnf(double estlongnf) {
+	public void setEstlongnf(double estlongnf) {
 		this.estlongnf = estlongnf;
 	}
 
