@@ -12,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -104,5 +105,24 @@ public class EsdopiesDAO extends GenericHbmDAO<Esdopies, EsdopiesId> implements
 		crit.add(Restrictions.ge("id.oesfregfk", sinceDate));
 		crit.add(Restrictions.le("id.oesfregfk", untilDate));
 		return this.findByCriteria(crit);
+	}
+
+	/**
+	 * Busca los registros de opiniones para un establecimiento
+	 * 
+	 * @param estcestnk
+	 *            Codigo del establecimiento
+	 * @param maxOpinions
+	 *            Maximo de opiniones a traer
+	 * @return Lista de opiniones del establecimiento
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Esdopies> findByEstablishment(int estcestnk, int maxOpinions)
+			throws DAOException {
+		// Crea los criterios
+		List<Criterion> crit = new ArrayList<Criterion>();
+		crit.add(Restrictions.eq("id.estcestnk", estcestnk));
+		return this.findByCriteria(crit, Order.desc("oesfregfk"), maxOpinions);
 	}
 }

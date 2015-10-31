@@ -34,4 +34,18 @@ public interface IEsdopiesDAO extends GenericDAO<Esdopies, EsdopiesId> {
 	public List<Esdopies> findByRange(int estcestnk, Date sinceDate,
 			Date untilDate) throws DAOException;
 
+	/**
+	 * Busca los registros de opiniones para un establecimiento
+	 * 
+	 * @param estcestnk
+	 *            Codigo del establecimiento
+	 * @param maxOpinions
+	 *            Maximo de opiniones a traer
+	 * @return Lista de opiniones del establecimiento
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Esdopies> findByEstablishment(int estcestnk, int maxOpinions)
+			throws DAOException;
+
 }
