@@ -82,8 +82,20 @@ public class OpinionServices implements IOpinionServices {
 			// Guarda registro en la base de datos
 			esdopiesDao.save(opies);
 			// Retorno
-			return new ReturnValidation(Constants.ONE,
+			ReturnValidation response = new ReturnValidation(Constants.ONE,
 					MessageBundle.getMessage("com.vegadvisor.util.msj001"));
+			// Asigna parametros de la llave de la opinión
+			response.getParams().put("estcestnk",
+					Constants.BLANKS + opies.getId().getEstcestnk());
+			response.getParams().put(
+					"oesfregfk",
+					Constants.BLANKS
+							+ DateUtils.getDateStringYYYYMMDD(opies.getId()
+									.getOesfregfk()));
+			response.getParams().put("oescoesnk",
+					Constants.BLANKS + opies.getId().getOescoesnk());
+			// Retorno
+			return response;
 		} catch (DAOException e) {/* Ha ocurrido algn error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);

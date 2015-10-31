@@ -198,4 +198,29 @@ public class Constants {
 	 */
 	public static final String PERCENTAGE = "%";
 
+	/**
+	 * Punto
+	 */
+	public static final String DOT = ".";
+
+	/**
+	 * User Image
+	 */
+	public static final String USER_IMAGE = "USER_IMAGE_";
+
+	/**
+	 * Event Image
+	 */
+	public static final String EVENT_IMAGE = "EVENT_IMAGE_";
+
+	/**
+	 * Establishment Image
+	 */
+	public static final String ESTABLISHMENT_IMAGE = "ESTABLISHMENT_IMAGE_";
+
+	/**
+	 * Opinion Image
+	 */
+	public static final String OPINION_IMAGE = "OPINION_IMAGE_";
+
 }
