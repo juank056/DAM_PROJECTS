@@ -3,6 +3,7 @@
  */
 package com.vegadvisor.server.utils;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -111,6 +112,20 @@ public class DateUtils {
 		fech.setMonth(Integer.valueOf(date.substring(4, 6)) - 1);
 		fech.setDate(Integer.valueOf(date.substring(6, 8)));
 		return fech;
+	}
+
+	/**
+	 * Metodo para obtener una hora dado un String en formato HHMMSS
+	 * 
+	 * @param date
+	 *            el String de la fecha a obtener
+	 * @return El objeto de fecha
+	 */
+	@SuppressWarnings("deprecation")
+	public static Date getTimeDateHHMMSS(String time) {
+		return new Time(Integer.valueOf(time.substring(0, 2)),
+				Integer.valueOf(time.substring(2, 4)), Integer.valueOf(time
+						.substring(4, 6)));
 	}
 
 	/**

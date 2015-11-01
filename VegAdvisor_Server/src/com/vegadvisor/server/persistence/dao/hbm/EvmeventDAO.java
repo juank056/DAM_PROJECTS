@@ -20,6 +20,7 @@ import com.vegadvisor.server.persistence.bo.EvmeventId;
 import com.vegadvisor.server.persistence.dao.IEvmeventDAO;
 import com.vegadvisor.server.persistence.dao.hbm.base.GenericHbmDAO;
 import com.vegadvisor.server.persistence.dao.hbm.base.HibernateFactory;
+import com.vegadvisor.server.utils.Constants;
 
 /**
  * @author VegAdvisor DAO para manejar la tabla de Evmevent
@@ -105,8 +106,8 @@ public class EvmeventDAO extends GenericHbmDAO<Evmevent, EvmeventId> implements
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// Consulta a realizar
 		String query = "select event from Evmevent event"
-				+ " where event.evedeveaf like %:nomEvent% "
-				+ "having (6371*ACOS(COS( RADIANS(:mylatitud)) * "
+				+ " where event.evedeveaf like :nomEvent and "
+				+ "(6371*ACOS(COS( RADIANS(:mylatitud)) * "
 				+ "COS(RADIANS(evelatinf)) * COS(RADIANS(evelongnf) "
 				+ "- RADIANS(:mylongitud) )+ SIN( RADIANS(:mylatitud))"
 				+ "*SIN(RADIANS(evelatinf)))) <= :myratio "
@@ -114,7 +115,8 @@ public class EvmeventDAO extends GenericHbmDAO<Evmevent, EvmeventId> implements
 		// Asigna parametros
 		parameters.put("mylatitud", latitud);
 		parameters.put("mylongitud", longitud);
-		parameters.put("nomEvent", evedeveaf);
+		parameters.put("nomEvent", Constants.PERCENTAGE + evedeveaf
+				+ Constants.PERCENTAGE);
 		parameters.put("myratio", ratio);
 		// Ejecuta consulta
 		return this.findByQuery(query, parameters);

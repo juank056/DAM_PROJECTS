@@ -228,11 +228,21 @@ public class EstablishmentServices implements IEstablishmentServices {
 		try {
 			// Inicia DAOS
 			initDaos();
+			// Obtiene el establecimiento
+			Esmestab estab = esmestabDao.findById(establishmentId);
+			// Revisa si se encuentra el establecimiento
+			if (estab == null) {/* No encontrado */
+				// Finaliza
+				return response;
+			}
 			// Inicia lista de retorno con los elementos en ceros
 			Date temp = DateUtils.moveUtilDate(sinceDate, 0);
 			while (!isDone) {
 				// Crea elemento de retorno
 				EstablishmentStatistic statistic = new EstablishmentStatistic();
+				// Id y nombre de establecimiento
+				statistic.setEstablishmentId(establishmentId);
+				statistic.setEstablishmentName(estab.getEstnestaf());
 				// Asigna fecha del dia
 				statistic.setDay(temp);
 				// Mueve fecha un día
@@ -248,6 +258,9 @@ public class EstablishmentServices implements IEstablishmentServices {
 					statistic = new EstablishmentStatistic();
 					// Asigna fecha del dia
 					statistic.setDay(temp);
+					// Id y nombre de establecimiento
+					statistic.setEstablishmentId(establishmentId);
+					statistic.setEstablishmentName(estab.getEstnestaf());
 					// Adiciona elemento a la lista
 					response.add(statistic);
 				}

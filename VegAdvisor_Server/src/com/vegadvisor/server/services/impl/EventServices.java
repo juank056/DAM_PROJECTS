@@ -200,6 +200,14 @@ public class EventServices implements IEventServices {
 		try {
 			// Inicia DAOS
 			initDaos();
+			// Obtiene evento padre
+			Evmevent event = evmeventDao.findById(new EvmeventId(countryCode,
+					cityCode, eventDate, eventSec));
+			// Revisa que encuentre el evento
+			if (event == null) {/* Evento no encontrado */
+				return new ReturnValidation(Constants.ZERO,
+						MessageBundle.getMessage("com.vegadvisor.util.msj004"));
+			}
 			// Crea registro de EVDEVVUS
 			Evdevvus evvus = new Evdevvus();
 			// Llave del registro
@@ -211,9 +219,6 @@ public class EventServices implements IEventServices {
 			evvus.setEvuindpvf(participationInd);
 			// Guarda o actualiza registro
 			evdevvusDao.saveOrUpdate(evvus);
-			// Obtiene evento padre
-			Evmevent event = evmeventDao.findById(new EvmeventId(countryCode,
-					cityCode, eventDate, eventSec));
 			// Si el indicador de participación es '2' (Asistire, incrementa)
 			// Si es '0', decrementa
 			if (Constants.TWO.equals(participationInd)) {/* Participa */

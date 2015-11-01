@@ -15,6 +15,7 @@ import com.vegadvisor.server.persistence.DAOException;
 import com.vegadvisor.server.persistence.bo.Esmestab;
 import com.vegadvisor.server.persistence.dao.IEsmestabDAO;
 import com.vegadvisor.server.persistence.dao.hbm.base.GenericHbmDAO;
+import com.vegadvisor.server.utils.Constants;
 
 /**
  * @author VegAdvisor DAO para manejar la tabla de Esmestab
@@ -54,8 +55,8 @@ public class EsmestabDAO extends GenericHbmDAO<Esmestab, Integer> implements
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		// Consulta a realizar
 		String query = "select estab from Esmestab estab"
-				+ " where estab.estnestaf like %:nomEstab% "
-				+ "having (6371*ACOS(COS( RADIANS(:mylatitud)) * "
+				+ " where estab.estnestaf like :nomEstab and "
+				+ "(6371*ACOS(COS( RADIANS(:mylatitud)) * "
 				+ "COS(RADIANS(estlatinf)) * COS(RADIANS(estlongnf) "
 				+ "- RADIANS(:mylongitud) )+ SIN( RADIANS(:mylatitud))"
 				+ "*SIN(RADIANS(estlatinf)))) <= :myratio "
@@ -63,7 +64,8 @@ public class EsmestabDAO extends GenericHbmDAO<Esmestab, Integer> implements
 		// Asigna parametros
 		parameters.put("mylatitud", latitud);
 		parameters.put("mylongitud", longitud);
-		parameters.put("nomEstab", estnestaf);
+		parameters.put("nomEstab", Constants.PERCENTAGE + estnestaf
+				+ Constants.PERCENTAGE);
 		parameters.put("myratio", ratio);
 		// Ejecuta consulta
 		return this.findByQuery(query, parameters);

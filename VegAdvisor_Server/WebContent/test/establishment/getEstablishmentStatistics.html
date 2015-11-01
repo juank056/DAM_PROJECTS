@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Prueba - getEstablishmentStatistics</title>
+<link rel="stylesheet" type="text/css"
+	href="/VegAdvisor_Server/style/style.css" media="screen" />
+</head>
+<body>
+	<form
+		action="/VegAdvisor_Server/rest/establishment/getEstablishmentStatistics"
+		method="POST" target="ans">
+		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
+		<table class="lince_table1">
+			<tr>
+				<td><label for="establishmentId">Id Establecimiento: </label></td>
+				<td><input name="establishmentId" /></td>
+			</tr>
+			<tr>
+				<td><label for="sinceDate">Fecha Desde: </label></td>
+				<td><input name="sinceDate" value="20150101" /></td>
+			</tr>
+			<tr>
+				<td><label for="untilDate">Fecha hasta: </label></td>
+				<td><input name="untilDate" value="20151231" /></td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="Submit" />
+	</form>
+	RESPUESTA:
+	<iframe id="ans" name="ans" style="width: 100%; height: 70%;"></iframe>
+</body>
+</html>

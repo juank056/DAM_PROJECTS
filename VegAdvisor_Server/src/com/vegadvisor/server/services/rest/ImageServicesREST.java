@@ -27,7 +27,7 @@ import com.vegadvisor.server.utils.SpringAppContext;
  * @author JuanCamilo
  *
  */
-@Path("/images")
+@Path("/image")
 public class ImageServicesREST {
 
 	/**

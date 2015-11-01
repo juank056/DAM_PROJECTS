@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Prueba - createOrUpdateEstablishment</title>
+<link rel="stylesheet" type="text/css"
+	href="/VegAdvisor_Server/style/style.css" media="screen" />
+</head>
+<body>
+	<form
+		action="/VegAdvisor_Server/rest/establishment/createOrUpdateEstablishment"
+		method="POST" target="ans">
+		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
+		<table class="lince_table1">
+			<tr>
+				<td><label for="establishmentId">Id del
+						establecimiento: </label></td>
+				<td><input name="establishmentId" value="0" /></td>
+			</tr>
+			<tr>
+				<td><label for="userId">User Id: </label></td>
+				<td><input name="userId" /></td>
+			</tr>
+			<tr>
+				<td><label for="companyName">Nombre Establecimiento: </label></td>
+				<td><input name="companyName" /></td>
+			</tr>
+			<tr>
+				<td><label for="establishmentType">Tipo
+						Establecimiento: </label></td>
+				<td><input name="establishmentType" value="1" /></td>
+			</tr>
+			<tr>
+				<td><label for="address">Dirección: </label></td>
+				<td><input name="address" /></td>
+			</tr>
+			<tr>
+				<td><label for="phones">Teléfonos: </label></td>
+				<td><input name="phones" /></td>
+			</tr>
+			<tr>
+				<td><label for="openingTime">Horario Apertura: </label></td>
+				<td><input name="openingTime" value="090000" /></td>
+			</tr>
+			<tr>
+				<td><label for="closingTime">Horario Cierre: </label></td>
+				<td><input name="closingTime" value="210000" /></td>
+			</tr>
+			<tr>
+				<td><label for="country">Pais: </label></td>
+				<td><input name="country" value="170" /></td>
+			</tr>
+			<tr>
+				<td><label for="city">Ciudad: </label></td>
+				<td><input name="city" value="11001" /></td>
+			</tr>
+			<tr>
+				<td><label for="latitud">Latitud: </label></td>
+				<td><input name="latitud" /></td>
+			</tr>
+			<tr>
+				<td><label for="longitud">Longitud: </label></td>
+				<td><input name="longitud" /></td>
+			</tr>
+			<tr>
+				<td><label for="description">Descripción: </label></td>
+				<td><input name="description" /></td>
+			</tr>
+			<tr>
+				<td><label for="active">Activo: </label></td>
+				<td><input name="active" value="1" maxlength="1" /></td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="Submit" />
+	</form>
+	RESPUESTA:
+	<iframe id="ans" name="ans" style="width: 100%; height: 70%;"></iframe>
+</body>
+</html>
