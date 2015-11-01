@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Prueba - registerUsersOpinion</title>
+<link rel="stylesheet" type="text/css"
+	href="/VegAdvisor_Server/style/style.css" media="screen" />
+</head>
+<body>
+	<form action="/VegAdvisor_Server/rest/opinion/registerUsersOpinion"
+		method="POST" target="ans">
+		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
+		<table class="lince_table1">
+			<tr>
+				<td><label for="establishmentId">Id establecimiento: </label></td>
+				<td><input name="establishmentId" /></td>
+			</tr>
+			<tr>
+				<td><label for="userId">Id Usuario: </label></td>
+				<td><input name="userId" /></td>
+			</tr>
+			<tr>
+				<td><label for="stars">Estrellas: </label></td>
+				<td><input name="stars" value="5" /></td>
+			</tr>
+			<tr>
+				<td><label for="opinion">Opinión: </label></td>
+				<td><input name="opinion" /></td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="Submit" />
+	</form>
+	RESPUESTA:
+	<iframe id="ans" name="ans" style="width: 100%; height: 70%;"></iframe>
+</body>
+</html>

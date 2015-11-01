@@ -123,6 +123,7 @@ public class EsdopiesDAO extends GenericHbmDAO<Esdopies, EsdopiesId> implements
 		// Crea los criterios
 		List<Criterion> crit = new ArrayList<Criterion>();
 		crit.add(Restrictions.eq("id.estcestnk", estcestnk));
-		return this.findByCriteria(crit, Order.desc("oesfregfk"), maxOpinions);
+		return this.findByCriteria(crit, Order.desc("id.oesfregfk"),
+				maxOpinions);
 	}
 }
