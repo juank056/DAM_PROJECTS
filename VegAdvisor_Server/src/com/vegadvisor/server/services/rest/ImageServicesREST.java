@@ -189,9 +189,8 @@ public class ImageServicesREST {
 	public Response downloadImage(@FormParam("imagePath") String imagePath) {
 		LogLogger.getInstance(getClass()).logger("Inicia downloadImage",
 				LogLogger.DEBUG);
-		InputStream response = null;
 		// Ejecuta servicio
-		response = imageServices.downloadImage(imagePath);
+		InputStream response = imageServices.downloadImage(imagePath);
 		LogLogger.getInstance(getClass()).logger("Finaliza downloadImage",
 				LogLogger.DEBUG);
 		// Retornamos
