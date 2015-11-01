@@ -1,52 +1,13 @@
 <html>
 <head>
 <title>Prueba - CreateUser</title>
+<link rel="stylesheet" type="text/css"
+	href="/VegAdvisor_Server/style/style.css" media="screen" />
 </head>
-<style>
-.lince_table1 {
-	border-style: solid;
-	border-width: thin;
-	border-color: #FDBA4D;
-	border-spacing: 1px;
-	border-collapse: collapse;
-	padding: 1px;
-	width: auto;
-	background-color: #F2F2F2
-}
-
-.lince_table1 tbody tr {
-	
-}
-
-.lince_table1 tbody tr.odd_row {
-	background-color: #cccccc;
-	color: black;
-}
-
-.lince_table1 tbody tr.even_row {
-	background-color: #f7f7f7;
-	color: black;
-}
-
-.lince_table1 tbody td {
-	border: 1px solid #aaaaaa;
-	white-space: nowrap;
-	padding: 2px;
-}
-
-.lince_table1 .caption {
-	border: 1px solid #aaaaaa;
-	font-weight: bold;
-	background-color: #dce7f6;
-	color: #305881;
-	white-space: nowrap;
-	cursor: default;
-}
-</style>
 <body>
-	<form
-		action="http://localhost:8080/VegAdvisor_Server/rest/user/createUser"
-		method="POST" target="ans">
+	<form action="/VegAdvisor_Server/rest/user/createUser" method="POST"
+		target="ans">
+		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
 		<table class="lince_table1">
 			<tr>
 				<td><label for="userId">User ID</label></td>
