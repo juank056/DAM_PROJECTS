@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Prueba - createForumThread</title>
+<link rel="stylesheet" type="text/css"
+	href="/VegAdvisor_Server/style/style.css" media="screen" />
+</head>
+<body>
+	<form action="/VegAdvisor_Server/rest/forum/createForumThread"
+		method="POST" target="ans">
+		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
+		<table class="lince_table1">
+			<tr>
+				<td><label for="userId">Id del Usuario: </label></td>
+				<td><input name="userId" /></td>
+			</tr>
+			<tr>
+				<td><label for="threadTitle">Titulo Hilo: </label></td>
+				<td><input name="threadTitle" /></td>
+			</tr>
+			<tr>
+				<td><label for="threadDetail">Detalle Hilo: </label></td>
+				<td><input name="threadDetail" /></td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="Submit" />
+	</form>
+	RESPUESTA:
+	<iframe id="ans" name="ans" style="width: 100%; height: 70%;"></iframe>
+</body>
+</html>
