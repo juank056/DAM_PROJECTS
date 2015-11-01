@@ -10,6 +10,15 @@
 	background-color: #F2F2F2
 }
 
+.main_table tr td {
+	vertical-align: top;
+	border-style: solid;
+	border-width: thin;
+	border-color: #FDBA4D;
+	border-spacing: 3px;
+	border-collapse: collapse;
+}
+
 .lince_table1 {
 	border-style: solid;
 	border-width: thin;
