@@ -4,6 +4,8 @@
 package com.vegadvisor.server.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,8 +71,9 @@ public class ImageManager {
 	 * @param filePath
 	 *            Path del archivo
 	 * @return Bytes del archivo
+	 * @throws IOException
 	 */
-	public InputStream getImageFile(String filePath) {
+	public InputStream getImageFile(String filePath) throws IOException {
 		// Actua de acuerdo al modo de operación
 		switch (operationMode) {
 		case 1: /* Modo regular */
@@ -106,9 +109,12 @@ public class ImageManager {
 	 * @param filePath
 	 *            ruta del archivo
 	 * @return Bytes del archivo
+	 * @throws FileNotFoundException
+	 *             Error de archivo no encontrado
 	 */
-	private InputStream getImageFileOpmode1(String filePath) {
-		return ClassLoader.getSystemResourceAsStream(filePath);
+	private InputStream getImageFileOpmode1(String filePath)
+			throws FileNotFoundException {
+		return new FileInputStream(new File(filePath));
 	}
 
 	/**

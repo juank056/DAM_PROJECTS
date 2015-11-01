@@ -102,6 +102,9 @@ public class ImageServices implements IImageServices {
 			filePath += userId;
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
+			// Quita espacios en blanco
+			filePath = filePath
+					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
 			imageManager.saveFileInServer(fileStream, filePath);
 			// Actualiza path de la imagen del usuario
@@ -148,6 +151,9 @@ public class ImageServices implements IImageServices {
 							DateUtils.getCurrentUtilDate(), Constants.MINUS);
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
+			// Quita espacios en blanco
+			filePath = filePath
+					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
 			imageManager.saveFileInServer(fileStream, filePath);
 			// Crea registro ESDIMAES
@@ -206,6 +212,9 @@ public class ImageServices implements IImageServices {
 							DateUtils.getCurrentUtilDate(), Constants.MINUS);
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
+			// Quita espacios en blanco
+			filePath = filePath
+					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
 			imageManager.saveFileInServer(fileStream, filePath);
 			// Crea registro ESDIMOPE
@@ -268,6 +277,9 @@ public class ImageServices implements IImageServices {
 							DateUtils.getCurrentUtilDate(), Constants.MINUS);
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
+			// Quita espacios en blanco
+			filePath = filePath
+					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
 			imageManager.saveFileInServer(fileStream, filePath);
 			// Crea registro EVDIMAEV

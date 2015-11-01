@@ -1,25 +1,21 @@
 <html>
 <head>
-<title>Prueba - UploadImage</title>
+<title>Prueba - uploadEstablishmentImage</title>
 <link rel="stylesheet" type="text/css"
 	href="/VegAdvisor_Server/style/style.css" media="screen" />
 </head>
 <body>
-	<form action="/VegAdvisor_Server/rest/images/uploadUserImage"
+	<form action="/VegAdvisor_Server/rest/image/uploadEstablishmentImage"
 		method="POST" target="ans" enctype="multipart/form-data">
 		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
 		<table class="lince_table1">
 			<tr>
-				<td><label for="name">Name</label></td>
-				<td><input name="name" /></td>
+				<td><label for="establishmentId">Establishment id: </label></td>
+				<td><input name="establishmentId" /></td>
 			</tr>
 			<tr>
-				<td><label for="desc">Description: </label></td>
-				<td><input name="desc" /></td>
-			</tr>
-			<tr>
-				<td><label for="file">File: </label></td>
-				<td><input name="file" type="file" /></td>
+				<td><label for="image">Image: </label></td>
+				<td><input name="image" type="file" accept=".jpeg,.gif,.png" /></td>
 			</tr>
 		</table>
 		<br /> <input type="submit" value="Submit" />

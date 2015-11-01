@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Prueba - uploadEventImage</title>
+<link rel="stylesheet" type="text/css"
+	href="/VegAdvisor_Server/style/style.css" media="screen" />
+</head>
+<body>
+	<form action="/VegAdvisor_Server/rest/image/uploadEventImage"
+		method="POST" target="ans" enctype="multipart/form-data">
+		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
+		<table class="lince_table1">
+			<tr>
+				<td><label for="countryCode">Pais: </label></td>
+				<td><input name="countryCode" value="170" /></td>
+			</tr>
+			<tr>
+				<td><label for="cityCode">Ciudad: </label></td>
+				<td><input name="cityCode" value="11001" /></td>
+			</tr>
+			<tr>
+				<td><label for="eventDate">Fecha Evento: </label></td>
+				<td><input name="eventDate" value="20151223" /></td>
+			</tr>
+			<tr>
+				<td><label for="eventSecuence">Secuencia Evento: </label></td>
+				<td><input name="eventSecuence" /></td>
+			</tr>
+			<tr>
+				<td><label for="image">Image: </label></td>
+				<td><input name="image" type="file" accept=".jpeg,.gif,.png" /></td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="Submit" />
+	</form>
+	RESPUESTA:
+	<iframe id="ans" name="ans" style="width: 100%; height: 70%;"></iframe>
+</body>
+</html>
