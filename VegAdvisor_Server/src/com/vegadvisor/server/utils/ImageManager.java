@@ -13,6 +13,14 @@ import java.io.OutputStream;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
+import com.sun.jersey.core.header.FormDataContentDisposition;
+
 /**
  * Clase que se encarga del almacenamiento de imagenes dentro del servidor
  * 
@@ -29,6 +37,21 @@ public class ImageManager {
 	private int operationMode;
 
 	/**
+	 * Amazon user key
+	 */
+	private String aws_userKey;
+
+	/**
+	 * Amazon password
+	 */
+	private String aws_password;
+
+	/**
+	 * Bucket de S3
+	 */
+	private String aws_bucket;
+
+	/**
 	 * 
 	 */
 	public ImageManager() {
@@ -38,6 +61,15 @@ public class ImageManager {
 		try {
 			this.operationMode = Integer.valueOf(ConfigApplicationManager
 					.getParameter("com.vegadvisor.server.image.opmode"));
+			// Si es 2 obtiene parametros de amazon
+			if (this.operationMode == 2) {
+				this.aws_userKey = ConfigApplicationManager
+						.getParameter("com.vegadvisor.server.image.awsuser");
+				this.aws_password = ConfigApplicationManager
+						.getParameter("com.vegadvisor.server.image.awspasswd");
+				this.aws_bucket = ConfigApplicationManager
+						.getParameter("com.vegadvisor.server.image.awsbucket");
+			}
 		} catch (Exception e) {/* Ocurrio error */
 			// imprime pero ignora
 			LogLogger.getInstance(getClass()).logger(
@@ -52,15 +84,16 @@ public class ImageManager {
 	 * @param fileLocation
 	 * @throws IOException
 	 */
-	public void saveFileInServer(InputStream fileStream, String fileLocation)
+	public void saveFileInServer(InputStream fileStream,
+			FormDataContentDisposition fileDetail, String fileLocation)
 			throws Exception {
 		// Actua de acuerdo al modo de operación
 		switch (operationMode) {
 		case 1: /* Modo regular */
-			this.saveFileInServerOpmode1(fileStream, fileLocation);
+			this.saveFileInServerOpmode1(fileStream, fileDetail, fileLocation);
 			break;
 		case 2: /* Amazon web services */
-			this.saveFileInServerOpmode2(fileStream, fileLocation);
+			this.saveFileInServerOpmode2(fileStream, fileDetail, fileLocation);
 			break;
 		}
 	}
@@ -125,8 +158,14 @@ public class ImageManager {
 	 * @return Bytes del archivo
 	 */
 	private InputStream getImageFileOpmode2(String filePath) {
-		// TODO IMPLEMENTAR
-		return null;
+		// Crea cliente de s3
+		AmazonS3 s3client = new AmazonS3Client(new BasicAWSCredentials(
+				aws_userKey, aws_password));
+		// Obtiene objeto
+		S3Object object = s3client.getObject(new GetObjectRequest(aws_bucket,
+				filePath));
+		// Retorna contenido
+		return object.getObjectContent();
 	}
 
 	/**
@@ -140,7 +179,8 @@ public class ImageManager {
 	 *             Error guardando archivo
 	 */
 	private void saveFileInServerOpmode1(InputStream fileStream,
-			String fileLocation) throws IOException {
+			FormDataContentDisposition fileDetail, String fileLocation)
+			throws IOException {
 		// Bytes leidos
 		int read = 0;
 		// Buffer para escritura
@@ -167,8 +207,18 @@ public class ImageManager {
 	 *             Error guardando archivo
 	 */
 	private void saveFileInServerOpmode2(InputStream fileStream,
-			String fileLocation) throws IOException {
-		// TODO implementar código amazon
+			FormDataContentDisposition fileDetail, String fileLocation)
+			throws Exception {
+		// Ejecuta modo de operacion 1 para guardar temporalmente en el servidor
+		this.saveFileInServerOpmode1(fileStream, fileDetail, fileLocation);
+		// Crea cliente de s3
+		AmazonS3 s3client = new AmazonS3Client(new BasicAWSCredentials(
+				aws_userKey, aws_password));
+		// File a enviar
+		File file = new File(fileLocation);
+		// Pone objeto en s3
+		s3client.putObject(new PutObjectRequest(aws_bucket, fileLocation, file));
+		// Borra archivo del disco local
+		file.delete();
 	}
-
 }

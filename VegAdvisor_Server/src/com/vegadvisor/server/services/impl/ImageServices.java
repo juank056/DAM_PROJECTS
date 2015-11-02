@@ -106,7 +106,7 @@ public class ImageServices implements IImageServices {
 			filePath = filePath
 					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
-			imageManager.saveFileInServer(fileStream, filePath);
+			imageManager.saveFileInServer(fileStream, fileDetail, filePath);
 			// Actualiza path de la imagen del usuario
 			usuar.setUsufotoaf(filePath);
 			// Actualiza base de datos
@@ -155,7 +155,7 @@ public class ImageServices implements IImageServices {
 			filePath = filePath
 					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
-			imageManager.saveFileInServer(fileStream, filePath);
+			imageManager.saveFileInServer(fileStream, fileDetail, filePath);
 			// Crea registro ESDIMAES
 			Esdimaes imaes = new Esdimaes();
 			// Id del registro
@@ -216,7 +216,7 @@ public class ImageServices implements IImageServices {
 			filePath = filePath
 					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
-			imageManager.saveFileInServer(fileStream, filePath);
+			imageManager.saveFileInServer(fileStream, fileDetail, filePath);
 			// Crea registro ESDIMOPE
 			Esdimope imope = new Esdimope();
 			// Id del registro
@@ -281,7 +281,7 @@ public class ImageServices implements IImageServices {
 			filePath = filePath
 					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
 			// Guarda imagen en el servidor de imagenes
-			imageManager.saveFileInServer(fileStream, filePath);
+			imageManager.saveFileInServer(fileStream, fileDetail, filePath);
 			// Crea registro EVDIMAEV
 			Evdimaev imaev = new Evdimaev();
 			// Id del registro
