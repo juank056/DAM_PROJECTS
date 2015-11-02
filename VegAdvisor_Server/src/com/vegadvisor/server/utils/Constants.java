@@ -53,6 +53,11 @@ public class Constants {
 	 * Linea del piso
 	 */
 	public static final String UNDER_SCORE = "_";
+	
+	/**
+	 * Guion
+	 */
+	public static final String DASH = "-";
 
 	/**
 	 * Uno
@@ -206,17 +211,17 @@ public class Constants {
 	/**
 	 * User Image
 	 */
-	public static final String USER_IMAGE = "USER_IMAGE_";
+	public static final String USER_IMAGE = "USER-IMAGE-";
 
 	/**
 	 * Event Image
 	 */
-	public static final String EVENT_IMAGE = "EVENT_IMAGE_";
+	public static final String EVENT_IMAGE = "EVENT-IMAGE-";
 
 	/**
 	 * Establishment Image
 	 */
-	public static final String ESTABLISHMENT_IMAGE = "ESTABLISHMENT_IMAGE_";
+	public static final String ESTABLISHMENT_IMAGE = "ESTABLISHMENT-IMAGE-";
 
 	/**
 	 * Opinion Image

@@ -146,7 +146,7 @@ public class ImageServices implements IImageServices {
 			// Id del establecimiento
 			filePath += establishmentId;
 			// Time de subida de imagen
-			filePath += Constants.UNDER_SCORE
+			filePath += Constants.DASH
 					+ DateUtils.getDateTimeString(
 							DateUtils.getCurrentUtilDate(), Constants.MINUS);
 			// Extension del archivo
@@ -207,7 +207,7 @@ public class ImageServices implements IImageServices {
 			filePath += DateUtils.getDateStringYYYYMMDD(opinionDate);
 			filePath += opinionSecuence;
 			// Time de subida de imagen
-			filePath += Constants.UNDER_SCORE
+			filePath += Constants.DASH
 					+ DateUtils.getDateTimeString(
 							DateUtils.getCurrentUtilDate(), Constants.MINUS);
 			// Extension del archivo
@@ -272,7 +272,7 @@ public class ImageServices implements IImageServices {
 			filePath += DateUtils.getDateStringYYYYMMDD(eventDate);
 			filePath += eventSecuence;
 			// Time de subida de imagen
-			filePath += Constants.UNDER_SCORE
+			filePath += Constants.DASH
 					+ DateUtils.getDateTimeString(
 							DateUtils.getCurrentUtilDate(), Constants.MINUS);
 			// Extension del archivo
