@@ -63,12 +63,14 @@ public class ImageManager {
 					.getParameter("com.vegadvisor.server.image.opmode"));
 			// Si es 2 obtiene parametros de amazon
 			if (this.operationMode == 2) {
-				this.aws_userKey = ConfigApplicationManager
-						.getParameter("com.vegadvisor.server.image.awsuser");
-				this.aws_password = ConfigApplicationManager
-						.getParameter("com.vegadvisor.server.image.awspasswd");
-				this.aws_bucket = ConfigApplicationManager
-						.getParameter("com.vegadvisor.server.image.awsbucket");
+				this.aws_userKey = DBDataChiper
+						.decrypt(ConfigApplicationManager
+								.getParameter("com.vegadvisor.server.image.awsuser"));
+				this.aws_password = DBDataChiper
+						.decrypt(ConfigApplicationManager
+								.getParameter("com.vegadvisor.server.image.awspasswd"));
+				this.aws_bucket = DBDataChiper.decrypt(ConfigApplicationManager
+						.getParameter("com.vegadvisor.server.image.awsbucket"));
 			}
 		} catch (Exception e) {/* Ocurrio error */
 			// imprime pero ignora
