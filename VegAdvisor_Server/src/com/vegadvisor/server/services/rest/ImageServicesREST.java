@@ -181,6 +181,13 @@ public class ImageServicesREST {
 		return response;
 	}
 
+	/**
+	 * Método para descargar una imagen
+	 * 
+	 * @param imagePath
+	 *            Ruta de la imágen
+	 * @return Bytes de la imagen
+	 */
 	@POST
 	@Path("/downloadImage")
 	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED,

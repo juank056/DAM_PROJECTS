@@ -15,7 +15,7 @@ public class DbDataCreator {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String passwd = "";
+		String passwd = "root";
 		String crypted = DBDataChiper.encrypt(passwd);
 		System.out.println("Crypted: "+crypted);
 		String clear = DBDataChiper.decrypt(crypted);
