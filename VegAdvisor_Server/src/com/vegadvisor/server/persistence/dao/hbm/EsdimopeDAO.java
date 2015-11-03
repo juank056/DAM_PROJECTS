@@ -3,10 +3,15 @@
  */
 package com.vegadvisor.server.persistence.dao.hbm;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -78,5 +83,28 @@ public class EsdimopeDAO extends GenericHbmDAO<Esdimope, EsdimopeId> implements
 			if (!this.getReuseSession())/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+	}
+
+	/**
+	 * Obtiene las imagenes de una opinion
+	 * 
+	 * @param estcestnk
+	 *            Id del establecimiento
+	 * @param oesfregfk
+	 *            Fecha de registro de la opinion
+	 * @param oescoesnk
+	 *            Consecutivo de la opinión
+	 * @return Lista de imagenes de la opinión
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Esdimope> findByOpinion(int estcestnk, Date oesfregfk,
+			int oescoesnk) throws DAOException {
+		// Crea los criterios
+		List<Criterion> crit = new ArrayList<Criterion>();
+		crit.add(Restrictions.eq("id.estcestnk", estcestnk));
+		crit.add(Restrictions.eq("id.oesfregfk", oesfregfk));
+		crit.add(Restrictions.eq("id.oescoesnk", oescoesnk));
+		return this.findByCriteria(crit);
 	}
 }

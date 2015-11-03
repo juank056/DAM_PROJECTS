@@ -3,10 +3,15 @@
  */
 package com.vegadvisor.server.persistence.dao.hbm;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -80,5 +85,31 @@ public class EvdimaevDAO extends GenericHbmDAO<Evdimaev, EvdimaevId> implements
 			if (!this.getReuseSession())/* Solo si no esta re-usando */
 				HibernateFactory.close(local_session);
 		}
+	}
+
+	/**
+	 * Obiene imagenes de un evento
+	 * 
+	 * @param paicpaiak
+	 *            Pais del evento
+	 * @param ciucciuak
+	 *            Ciudad del evento
+	 * @param evefevefk
+	 *            Fecha del evento
+	 * @param evecevenk
+	 *            Consecutivo del evento
+	 * @return Lista de imagenes del evento
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Evdimaev> findByEvent(String paicpaiak, String ciucciuak,
+			Date evefevefk, int evecevenk) throws DAOException {
+		// Crea los criterios
+		List<Criterion> crit = new ArrayList<Criterion>();
+		crit.add(Restrictions.eq("id.paicpaiak", paicpaiak));
+		crit.add(Restrictions.eq("id.ciucciuak", ciucciuak));
+		crit.add(Restrictions.eq("id.evefevefk", evefevefk));
+		crit.add(Restrictions.eq("id.evecevenk", evecevenk));
+		return this.findByCriteria(crit);
 	}
 }

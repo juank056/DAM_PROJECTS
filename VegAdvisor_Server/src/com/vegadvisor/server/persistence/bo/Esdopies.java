@@ -1,8 +1,11 @@
 package com.vegadvisor.server.persistence.bo;
 
+import java.util.List;
+
 import org.apache.commons.lang.exception.ExceptionUtils;
 
 import com.vegadvisor.server.persistence.DAOException;
+import com.vegadvisor.server.persistence.dao.IEsdimopeDAO;
 import com.vegadvisor.server.persistence.dao.IUsmusuarDAO;
 import com.vegadvisor.server.utils.Constants;
 import com.vegadvisor.server.utils.LogLogger;
@@ -25,6 +28,8 @@ public class Esdopies implements java.io.Serializable, AbstractBO<EsdopiesId> {
 	private String oesdetoaf;
 	// Nombre del usuario que hace la opinion
 	private String userName;
+	// Lista de imagenes de la opinion
+	private List<Esdimope> images;
 
 	public Esdopies() {
 	}
@@ -77,7 +82,8 @@ public class Esdopies implements java.io.Serializable, AbstractBO<EsdopiesId> {
 	}
 
 	/**
-	 * @param userName the userName to set
+	 * @param userName
+	 *            the userName to set
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -88,17 +94,38 @@ public class Esdopies implements java.io.Serializable, AbstractBO<EsdopiesId> {
 		return id;
 	}
 
+	/**
+	 * @return the images
+	 */
+	public List<Esdimope> getImages() {
+		return images;
+	}
+
+	/**
+	 * @param images
+	 *            the images to set
+	 */
+	public void setImages(List<Esdimope> images) {
+		this.images = images;
+	}
+
 	@Override
 	public void cleanObject() {
 		try {
 			// Inicia dao USMUSUAR
 			IUsmusuarDAO usmusuarDao = SpringAppContext.getAppContext()
 					.getBean(IUsmusuarDAO.class);
+			// Inicia dao ESDIMOPE
+			IEsdimopeDAO esdimopeDao = SpringAppContext.getAppContext()
+					.getBean(IEsdimopeDAO.class);
 			// Obtiene nombre del usuario que registra
 			Usmusuar usuar = usmusuarDao.findById(usucusuak);
 			// Asigna nombre de usuario
 			this.setUserName(usuar.getUsunusuaf() + Constants.BLANK_SPACE
 					+ usuar.getUsuapelaf());
+			// Obtiene imagenes de la opinion
+			this.images = esdimopeDao.findByOpinion(id.getEstcestnk(),
+					id.getOesfregfk(), id.getOescoesnk());
 		} catch (DAOException e) {/* Ocurrio error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);

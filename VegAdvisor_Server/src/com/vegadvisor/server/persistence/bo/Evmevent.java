@@ -1,5 +1,13 @@
 package com.vegadvisor.server.persistence.bo;
 
+import java.util.List;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+
+import com.vegadvisor.server.persistence.dao.IEvdimaevDAO;
+import com.vegadvisor.server.utils.LogLogger;
+import com.vegadvisor.server.utils.SpringAppContext;
+
 // Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1
 
 /**
@@ -22,6 +30,8 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	private int evenparnf;
 	// Indicador de participación de usuario
 	private String userParticipating;
+	// Imagenes del evento
+	private List<Evdimaev> images;
 
 	public Evmevent() {
 	}
@@ -127,6 +137,21 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 		this.userParticipating = userParticipating;
 	}
 
+	/**
+	 * @return the images
+	 */
+	public List<Evdimaev> getImages() {
+		return images;
+	}
+
+	/**
+	 * @param images
+	 *            the images to set
+	 */
+	public void setImages(List<Evdimaev> images) {
+		this.images = images;
+	}
+
 	@Override
 	public EvmeventId getPrimaryKey() {
 		return id;
@@ -134,7 +159,18 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 
 	@Override
 	public void cleanObject() {
-
+		try {
+			// DAO para leer EVDIMAEV
+			IEvdimaevDAO evdimaevDao = SpringAppContext.getAppContext()
+					.getBean(IEvdimaevDAO.class);
+			// Carga imagenes
+			images = evdimaevDao.findByEvent(id.getPaicpaiak(),
+					id.getCiucciuak(), id.getEvefevefk(), id.getEvecevenk());
+			;
+		} catch (Exception e) {/* Error */
+			LogLogger.getInstance(this.getClass()).logger(
+					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
+		}
 	}
 
 }
