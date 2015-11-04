@@ -11,7 +11,9 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import com.vegadvisor.server.persistence.DAOException;
 import com.vegadvisor.server.persistence.bo.Esdopies;
 import com.vegadvisor.server.persistence.bo.EsdopiesId;
+import com.vegadvisor.server.persistence.bo.Esmestab;
 import com.vegadvisor.server.persistence.dao.IEsdopiesDAO;
+import com.vegadvisor.server.persistence.dao.IEsmestabDAO;
 import com.vegadvisor.server.services.IOpinionServices;
 import com.vegadvisor.server.services.bo.ReturnValidation;
 import com.vegadvisor.server.utils.Constants;
@@ -32,6 +34,11 @@ public class OpinionServices implements IOpinionServices {
 	 * DAO para trabajar con tabla ESDOPIES
 	 */
 	private IEsdopiesDAO esdopiesDao;
+
+	/**
+	 * DAO para trabajar con tabla ESMESTAB
+	 */
+	private IEsmestabDAO esmestabDao;
 
 	/**
 	 * Indicador de Daos iniciados
@@ -81,6 +88,15 @@ public class OpinionServices implements IOpinionServices {
 			opies.setOesdetoaf(opinion);
 			// Guarda registro en la base de datos
 			esdopiesDao.save(opies);
+			// Obtiene promedio de estrellas de las opiniones registradas
+			double averageStars = esdopiesDao.calculateAverageStars(id
+					.getEstcestnk());
+			// Obtiene establecimiento
+			Esmestab estab = esmestabDao.findById(establishmentId);
+			// Actualiza promedio de estrellas
+			estab.setEstpestnf(averageStars);
+			// Actualiza registro
+			esmestabDao.update(estab);
 			// Retorno
 			ReturnValidation response = new ReturnValidation(Constants.ONE,
 					MessageBundle.getMessage("com.vegadvisor.util.msj001"));
@@ -140,6 +156,8 @@ public class OpinionServices implements IOpinionServices {
 		if (!daosInicialized) {
 			esdopiesDao = SpringAppContext.getAppContext().getBean(
 					IEsdopiesDAO.class);
+			esmestabDao = SpringAppContext.getAppContext().getBean(
+					IEsmestabDAO.class);
 			// Daos iniciados a true
 			daosInicialized = true;
 		}

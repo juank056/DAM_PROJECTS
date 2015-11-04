@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
@@ -125,5 +126,46 @@ public class EsdopiesDAO extends GenericHbmDAO<Esdopies, EsdopiesId> implements
 		crit.add(Restrictions.eq("id.estcestnk", estcestnk));
 		return this.findByCriteria(crit, Order.desc("id.oesfregfk"),
 				maxOpinions);
+	}
+
+	/**
+	 * Calcula el promedio de estrellas de opinión para un establecimiento
+	 * 
+	 * @param estcestnk
+	 *            Código del establecimiento
+	 * @return Promedio de estrellas para el establecimiento
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public double calculateAverageStars(int estcestnk) throws DAOException {
+		// Sesion y transaccion locales
+		Session local_session = null;
+		Transaction local_tx = null;
+		// Average
+		double average = 0;
+		try {
+			if (!reuseSession) {/* No re-usa */
+				// Inicia nueva sesion y transaccion
+				local_session = HibernateFactory.openSession();
+				local_tx = local_session.beginTransaction();
+			} else {/* Esta re-usando */
+				// Asigna a variables temporales
+				local_session = session;
+				local_tx = tx;
+			}
+			Query query = local_session
+					.createQuery("select avg(op.oesnestnf) from Esdopies op where op.id.estcestnk = :estab");
+			query.setParameter("estab", estcestnk);
+			average = (Double) query.uniqueResult();
+			if (!this.getReuseSession())/* Solo si no esta re-usando */
+				local_tx.commit();
+		} catch (Exception e) {
+			handleException(e, local_tx);
+		} finally {
+			if (!this.getReuseSession())/* Solo si no esta re-usando */
+				HibernateFactory.close(local_session);
+		}
+
+		return average;
 	}
 }

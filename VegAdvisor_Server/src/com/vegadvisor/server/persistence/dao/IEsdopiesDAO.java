@@ -48,4 +48,15 @@ public interface IEsdopiesDAO extends GenericDAO<Esdopies, EsdopiesId> {
 	public List<Esdopies> findByEstablishment(int estcestnk, int maxOpinions)
 			throws DAOException;
 
+	/**
+	 * Calcula el promedio de estrellas de opinión para un establecimiento
+	 * 
+	 * @param estcestnk
+	 *            Código del establecimiento
+	 * @return Promedio de estrellas para el establecimiento
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public double calculateAverageStars(int estcestnk) throws DAOException;
+
 }
