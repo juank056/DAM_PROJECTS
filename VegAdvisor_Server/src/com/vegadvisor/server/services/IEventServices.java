@@ -90,4 +90,43 @@ public interface IEventServices {
 			String cityCode, Date eventDate, int eventSec, String userId,
 			String participationInd);
 
+	/**
+	 * Obtiene los eventos de un usuario
+	 * 
+	 * @param userId
+	 *            Id del usuario
+	 * @return Lista de eventos del usuario
+	 */
+	public List<Evmevent> findUserEvents(String userId);
+
+	/**
+	 * Método para actualizar a un evento del sistema
+	 * 
+	 * @param countryCode
+	 *            Código de pais del evento
+	 * @param cityCode
+	 *            Código de ciudad del evento
+	 * @param eventDate
+	 *            Fecha del evento
+	 * @param eventSec
+	 *            Secuencia del evento
+	 * @param eventName
+	 *            Nombre del evento
+	 * @param establishmentId
+	 *            Id del establecimiento del evento
+	 * @param latitud
+	 *            Latitud del evento
+	 * @param longitud
+	 *            Longitud del evento
+	 * @param placeName
+	 *            Nombre del lugar donde es el evento
+	 * @param eventType
+	 *            Tipo de evento
+	 * @return Retorno de validación
+	 */
+	public ReturnValidation updateEvent(String countryCode, String cityCode,
+			Date eventDate, int eventSec, String eventName,
+			int establishmentId, double latitud, double longitud,
+			String placeName, int eventType);
+
 }

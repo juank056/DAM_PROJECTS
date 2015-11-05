@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Prueba - updateEvent</title>
+<link rel="stylesheet" type="text/css"
+	href="/VegAdvisor_Server/style/style.css" media="screen" />
+</head>
+<body>
+	<form action="/VegAdvisor_Server/rest/event/updateEvent" method="POST"
+		target="ans">
+		<a href="/VegAdvisor_Server/">Ir a Inicio</a>
+		<table class="lince_table1">
+			<tr>
+				<td><label for="countryCode">Pais: </label></td>
+				<td><input name="countryCode" value="170" /></td>
+			</tr>
+			<tr>
+				<td><label for="cityCode">Ciudad: </label></td>
+				<td><input name="cityCode" value="11001" /></td>
+			</tr>
+			<tr>
+				<td><label for="dateEvent">Fecha Evento: </label></td>
+				<td><input name="dateEvent" value="20151223" /></td>
+			</tr>
+			<tr>
+				<td><label for="eventSec">Secuencia Evento: </label></td>
+				<td><input name="eventSec" value="1" /></td>
+			</tr>
+			<tr>
+				<td><label for="eventName">Nombre Evento: </label></td>
+				<td><input name="eventName" /></td>
+			</tr>
+			<tr>
+				<td><label for="establishmentId">Establecimiento: </label></td>
+				<td><input name="establishmentId" /></td>
+			</tr>
+			<tr>
+				<td><label for="latitud">Latitud: </label></td>
+				<td><input name="latitud" /></td>
+			</tr>
+			<tr>
+				<td><label for="longitud">Longitud: </label></td>
+				<td><input name="longitud" /></td>
+			</tr>
+			<tr>
+				<td><label for="placeName">Nombre Lugar: </label></td>
+				<td><input name="placeName" /></td>
+			</tr>
+			<tr>
+				<td><label for="eventType">Tipo Evento: </label></td>
+				<td><input name="eventType" value="1" /></td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="Submit" />
+	</form>
+	RESPUESTA:
+	<iframe id="ans" name="ans" style="width: 100%; height: 70%;"></iframe>
+</body>
+</html>

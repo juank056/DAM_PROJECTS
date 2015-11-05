@@ -35,4 +35,15 @@ public interface IEvmeventDAO extends GenericDAO<Evmevent, EvmeventId> {
 	public List<Evmevent> findByNameAndPosition(String evedeveaf,
 			double latitud, double longitud, double ratio) throws DAOException;
 
+	/**
+	 * Busca los eventos de un usuario
+	 * 
+	 * @param usucusuak
+	 *            Id del usuario
+	 * @return Lista de eventos del usuario
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Evmevent> findUserEvents(String usucusuak) throws DAOException;
+
 }

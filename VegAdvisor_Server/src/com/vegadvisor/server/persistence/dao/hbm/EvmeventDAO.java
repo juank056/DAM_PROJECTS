@@ -3,6 +3,7 @@
  */
 package com.vegadvisor.server.persistence.dao.hbm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -120,5 +122,21 @@ public class EvmeventDAO extends GenericHbmDAO<Evmevent, EvmeventId> implements
 		parameters.put("myratio", ratio);
 		// Ejecuta consulta
 		return this.findByQuery(query, parameters);
+	}
+
+	/**
+	 * Busca los eventos de un usuario
+	 * 
+	 * @param usucusuak
+	 *            Id del usuario
+	 * @return Lista de eventos del usuario
+	 * @throws DAOException
+	 *             Error en la base de datos
+	 */
+	public List<Evmevent> findUserEvents(String usucusuak) throws DAOException {
+		// Crea los criterios
+		List<Criterion> crit = new ArrayList<Criterion>();
+		crit.add(Restrictions.eq("usucusuak", usucusuak));
+		return this.findByCriteria(crit);
 	}
 }

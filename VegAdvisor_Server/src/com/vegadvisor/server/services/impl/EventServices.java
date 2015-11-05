@@ -242,6 +242,95 @@ public class EventServices implements IEventServices {
 	}
 
 	/**
+	 * Obtiene los eventos de un usuario
+	 * 
+	 * @param userId
+	 *            Id del usuario
+	 * @return Lista de eventos del usuario
+	 */
+	public List<Evmevent> findUserEvents(String userId) {
+		// Retorno
+		List<Evmevent> response = new ArrayList<Evmevent>();
+		try {
+			// Inicia DAOS
+			initDaos();
+			// Busca eventos del usuario
+			response = evmeventDao.findUserEvents(userId);
+		} catch (Exception e) {/* Ha ocurrido algn error */
+			LogLogger.getInstance(this.getClass()).logger(
+					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
+		}
+		// Retorna
+		return response;
+	}
+
+	/**
+	 * Método para actualizar a un evento del sistema
+	 * 
+	 * @param countryCode
+	 *            Código de pais del evento
+	 * @param cityCode
+	 *            Código de ciudad del evento
+	 * @param eventDate
+	 *            Fecha del evento
+	 * @param eventSec
+	 *            Secuencia del evento
+	 * @param eventName
+	 *            Nombre del evento
+	 * @param establishmentId
+	 *            Id del establecimiento del evento
+	 * @param latitud
+	 *            Latitud del evento
+	 * @param longitud
+	 *            Longitud del evento
+	 * @param placeName
+	 *            Nombre del lugar donde es el evento
+	 * @param eventType
+	 *            Tipo de evento
+	 * @return Retorno de validación
+	 */
+	public ReturnValidation updateEvent(String countryCode, String cityCode,
+			Date eventDate, int eventSec, String eventName,
+			int establishmentId, double latitud, double longitud,
+			String placeName, int eventType) {
+		try {
+			// Inicia DAOS
+			initDaos();
+			// Obtiene evento
+			Evmevent event = evmeventDao.findById(new EvmeventId(countryCode,
+					cityCode, eventDate, eventSec));
+			// Revisa que encuentre el evento
+			if (event == null) {/* Evento no encontrado */
+				return new ReturnValidation(Constants.ZERO,
+						MessageBundle.getMessage("com.vegadvisor.util.msj004"));
+			}
+			// Actualiza datos del evento
+			// establecimiento del evento
+			event.setEstcestnk(establishmentId);
+			// Localizacion evento
+			event.setEstloceaf(placeName);
+			// Latitud evento
+			event.setEvelatinf(longitud);
+			// Longitud evento
+			event.setEvelongnf(longitud);
+			// Tipo de evento
+			event.setTevctevnk(eventType);
+			// Descripción evento
+			event.setEvedeveaf(eventName);
+			// Actualiza registro en la base de datos
+			evmeventDao.update(event);
+			// Retorno
+			return new ReturnValidation(Constants.ONE,
+					MessageBundle.getMessage("com.vegadvisor.util.msj001"));
+		} catch (DAOException e) {/* Ha ocurrido algn error */
+			LogLogger.getInstance(this.getClass()).logger(
+					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
+			return new ReturnValidation(Constants.ZERO,
+					MessageBundle.getMessage("com.vegadvisor.util.apperror"));
+		}
+	}
+
+	/**
 	 * Inicia los DAos si no han sido iniciados
 	 */
 	private void initDaos() {
