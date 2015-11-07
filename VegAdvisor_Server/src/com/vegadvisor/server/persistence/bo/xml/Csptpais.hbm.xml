@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.vegadvisor.server.persistence.bo.Csptpais" table="csptpais" catalog="vegadvisor" optimistic-lock="version">
+    <class name="com.vegadvisor.server.persistence.bo.Csptpais" table="CSPTPAIS" catalog="VEGADVISOR" optimistic-lock="version">
         <id name="paicpaiak" type="string">
             <column name="PAICPAIAK" length="4" />
             <generator class="assigned" />

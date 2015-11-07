@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.vegadvisor.server.persistence.bo.Evdimaev" table="evdimaev" catalog="vegadvisor" optimistic-lock="version">
+    <class name="com.vegadvisor.server.persistence.bo.Evdimaev" table="EVDIMAEV" catalog="VEGADVISOR" optimistic-lock="version">
         <composite-id name="id" class="com.vegadvisor.server.persistence.bo.EvdimaevId">
             <key-property name="paicpaiak" type="string">
                 <column name="PAICPAIAK" length="4" />

@@ -4,7 +4,7 @@
 <!-- Generated 23-oct-2015 19:39:18 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
 	<class name="com.vegadvisor.server.persistence.bo.Esmestab"
-		table="esmestab" catalog="vegadvisor" optimistic-lock="version">
+		table="ESMESTAB" catalog="VEGADVISOR" optimistic-lock="version">
 		<id name="estcestnk" type="java.lang.Integer">
 			<column name="ESTCESTNK" />
 			<generator class="identity" />
