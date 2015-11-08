@@ -16,6 +16,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
@@ -219,7 +220,12 @@ public class ImageManager {
 		// File a enviar
 		File file = new File(fileLocation);
 		// Pone objeto en s3
-		s3client.putObject(new PutObjectRequest(aws_bucket, fileLocation, file));
+		PutObjectRequest putObj = new PutObjectRequest(aws_bucket,
+				fileLocation, file);
+		// Indica que el archivo se pueda descargar
+		putObj.setCannedAcl(CannedAccessControlList.PublicRead);
+		// Sube objeto
+		s3client.putObject(putObj);
 		// Borra archivo del disco local
 		file.delete();
 	}
