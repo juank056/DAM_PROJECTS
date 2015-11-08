@@ -77,6 +77,7 @@ public class EventServicesREST {
 			@FormParam("cityCode") String cityCode,
 			@FormParam("eventName") String eventName,
 			@FormParam("dateEvent") String dateEvent,
+			@FormParam("timeEvent") String timeEvent,
 			@FormParam("establishmentId") int establishmentId,
 			@FormParam("latitud") double latitud,
 			@FormParam("longitud") double longitud,
@@ -87,7 +88,8 @@ public class EventServicesREST {
 		// Ejecuta servicio
 		ReturnValidation response = eventServices.createEvent(userId,
 				countryCode, cityCode, eventName,
-				DateUtils.getDateDateYYYYMMDD(dateEvent), establishmentId,
+				DateUtils.getDateDateYYYYMMDD(dateEvent),
+				DateUtils.getTimeDateHHMMSS(timeEvent), establishmentId,
 				latitud, longitud, placeName, eventType);
 		LogLogger.getInstance(getClass()).logger("Finaliza createEvent",
 				LogLogger.DEBUG);
@@ -231,19 +233,22 @@ public class EventServicesREST {
 			@FormParam("cityCode") String cityCode,
 			@FormParam("dateEvent") String dateEvent,
 			@FormParam("eventSec") int eventSec,
+			@FormParam("timeEvent") String timeEvent,
 			@FormParam("eventName") String eventName,
 			@FormParam("establishmentId") int establishmentId,
 			@FormParam("latitud") double latitud,
 			@FormParam("longitud") double longitud,
 			@FormParam("placeName") String placeName,
-			@FormParam("eventType") int eventType) {
+			@FormParam("eventType") int eventType,
+			@FormParam("isActive") String isActive) {
 		LogLogger.getInstance(getClass()).logger("Inicia updateEvent",
 				LogLogger.DEBUG);
 		// Ejecuta servicio
 		ReturnValidation response = eventServices.updateEvent(countryCode,
 				cityCode, DateUtils.getDateDateYYYYMMDD(dateEvent), eventSec,
-				eventName, establishmentId, latitud, longitud, placeName,
-				eventType);
+				DateUtils.getTimeDateHHMMSS(timeEvent), eventName,
+				establishmentId, latitud, longitud, placeName, eventType,
+				isActive);
 		LogLogger.getInstance(getClass()).logger("Finaliza updateEvent",
 				LogLogger.DEBUG);
 		// Retornamos

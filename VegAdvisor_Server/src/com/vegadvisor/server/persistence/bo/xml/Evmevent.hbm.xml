@@ -20,6 +20,9 @@
 				<column name="EVECEVENK" />
 			</key-property>
 		</composite-id>
+		<property name="evehoratf" type="time">
+			<column name="EVEHORATF" length="0" not-null="true" />
+		</property>
 		<property name="usucusuak" type="string">
 			<column name="USUCUSUAK" length="25" not-null="true" />
 		</property>
@@ -43,6 +46,9 @@
 		</property>
 		<property name="evenparnf" type="int">
 			<column name="EVENPARNF" not-null="true" />
+		</property>
+		<property name="eveiactsf" type="string">
+			<column name="EVEIACTSF" length="1" not-null="true" />
 		</property>
 	</class>
 </hibernate-mapping>

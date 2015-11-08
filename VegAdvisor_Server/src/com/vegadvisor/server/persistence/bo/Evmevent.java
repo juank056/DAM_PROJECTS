@@ -1,5 +1,6 @@
 package com.vegadvisor.server.persistence.bo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -20,6 +21,7 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	 */
 	private static final long serialVersionUID = 1L;
 	private EvmeventId id;
+	private Date evehoratf;
 	private String usucusuak;
 	private int estcestnk;
 	private String estloceaf;
@@ -28,6 +30,7 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	private int tevctevnk;
 	private String evedeveaf;
 	private int evenparnf;
+	private String eveiactsf;
 	// Indicador de participación de usuario
 	private String userParticipating;
 	// Imagenes del evento
@@ -56,6 +59,21 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 
 	public void setId(EvmeventId id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the evehoratf
+	 */
+	public Date getEvehoratf() {
+		return evehoratf;
+	}
+
+	/**
+	 * @param evehoratf
+	 *            the evehoratf to set
+	 */
+	public void setEvehoratf(Date evehoratf) {
+		this.evehoratf = evehoratf;
 	}
 
 	public String getUsucusuak() {
@@ -150,6 +168,21 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	 */
 	public void setImages(List<Evdimaev> images) {
 		this.images = images;
+	}
+
+	/**
+	 * @return the eveiactsf
+	 */
+	public String getEveiactsf() {
+		return eveiactsf;
+	}
+
+	/**
+	 * @param eveiactsf
+	 *            the eveiactsf to set
+	 */
+	public void setEveiactsf(String eveiactsf) {
+		this.eveiactsf = eveiactsf;
 	}
 
 	@Override

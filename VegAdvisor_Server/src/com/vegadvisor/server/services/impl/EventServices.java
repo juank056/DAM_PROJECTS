@@ -120,6 +120,8 @@ public class EventServices implements IEventServices {
 	 *            Nombre del evento
 	 * @param dateEvent
 	 *            Fecha del evento
+	 * @param timeEvent
+	 *            Hora del evento
 	 * @param establishmentId
 	 *            Id del establecimiento del evento (opcional)
 	 * @param latitud
@@ -134,7 +136,7 @@ public class EventServices implements IEventServices {
 	 */
 	@Override
 	public ReturnValidation createEvent(String userId, String countryCode,
-			String cityCode, String eventName, Date dateEvent,
+			String cityCode, String eventName, Date dateEvent, Date timeEvent,
 			int establishmentId, double latitud, double longitud,
 			String placeName, int eventType) {
 		try {
@@ -147,6 +149,8 @@ public class EventServices implements IEventServices {
 			// Asigna llave
 			event.setId(id);
 			// Asigna datos adicionales del evento
+			// Hora del evento
+			event.setEvehoratf(timeEvent);
 			// Usuario que crea el evento
 			event.setUsucusuak(userId);
 			// establecimiento del evento
@@ -163,6 +167,8 @@ public class EventServices implements IEventServices {
 			event.setEvedeveaf(eventName);
 			// Numero de participantes
 			event.setEvenparnf(0);
+			// Indicador de activo en si
+			event.setEveiactsf(Constants.ONE);
 			// Guarda registro en la base de datos
 			evmeventDao.save(event);
 			// Retorno
@@ -275,6 +281,8 @@ public class EventServices implements IEventServices {
 	 *            Fecha del evento
 	 * @param eventSec
 	 *            Secuencia del evento
+	 * @param timeEvent
+	 *            Hora del evento
 	 * @param eventName
 	 *            Nombre del evento
 	 * @param establishmentId
@@ -287,12 +295,14 @@ public class EventServices implements IEventServices {
 	 *            Nombre del lugar donde es el evento
 	 * @param eventType
 	 *            Tipo de evento
+	 * @param isActive
+	 *            Indicador de si el evento esta activo o no
 	 * @return Retorno de validación
 	 */
 	public ReturnValidation updateEvent(String countryCode, String cityCode,
-			Date eventDate, int eventSec, String eventName,
+			Date eventDate, int eventSec, Date timeEvent, String eventName,
 			int establishmentId, double latitud, double longitud,
-			String placeName, int eventType) {
+			String placeName, int eventType, String isActive) {
 		try {
 			// Inicia DAOS
 			initDaos();
@@ -305,6 +315,8 @@ public class EventServices implements IEventServices {
 						MessageBundle.getMessage("com.vegadvisor.util.msj004"));
 			}
 			// Actualiza datos del evento
+			// Hora del evento
+			event.setEvehoratf(timeEvent);
 			// establecimiento del evento
 			event.setEstcestnk(establishmentId);
 			// Localizacion evento
@@ -317,6 +329,8 @@ public class EventServices implements IEventServices {
 			event.setTevctevnk(eventType);
 			// Descripción evento
 			event.setEvedeveaf(eventName);
+			// Indicador activo
+			event.setEveiactsf(isActive);
 			// Actualiza registro en la base de datos
 			evmeventDao.update(event);
 			// Retorno

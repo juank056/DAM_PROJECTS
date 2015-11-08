@@ -52,6 +52,8 @@ public interface IEventServices {
 	 *            Nombre del evento
 	 * @param dateEvent
 	 *            Fecha del evento
+	 * @param timeEvent
+	 *            Hora del evento
 	 * @param establishmentId
 	 *            Id del establecimiento del evento (opcional)
 	 * @param latitud
@@ -65,7 +67,7 @@ public interface IEventServices {
 	 * @return Retorno de validación de creación de evento
 	 */
 	public ReturnValidation createEvent(String userId, String countryCode,
-			String cityCode, String eventName, Date dateEvent,
+			String cityCode, String eventName, Date dateEvent, Date timeEvent,
 			int establishmentId, double latitud, double longitud,
 			String placeName, int eventType);
 
@@ -110,6 +112,8 @@ public interface IEventServices {
 	 *            Fecha del evento
 	 * @param eventSec
 	 *            Secuencia del evento
+	 * @param timeEvent
+	 *            Hora del evento
 	 * @param eventName
 	 *            Nombre del evento
 	 * @param establishmentId
@@ -122,11 +126,13 @@ public interface IEventServices {
 	 *            Nombre del lugar donde es el evento
 	 * @param eventType
 	 *            Tipo de evento
+	 * @param isActive
+	 *            Indicador de si el evento está activo o no
 	 * @return Retorno de validación
 	 */
 	public ReturnValidation updateEvent(String countryCode, String cityCode,
-			Date eventDate, int eventSec, String eventName,
+			Date eventDate, int eventSec, Date timeEvent, String eventName,
 			int establishmentId, double latitud, double longitud,
-			String placeName, int eventType);
+			String placeName, int eventType, String isActive);
 
 }
