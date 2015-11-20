@@ -52,6 +52,33 @@ public class UserServices implements IUserServices {
 	}
 
 	/**
+	 * Metodo para obtener un usuario por su Id
+	 * 
+	 * @param userId
+	 *            Id del usuario a buscar
+	 * @return Datos del usuario
+	 */
+	public Usmusuar findUserById(String userId) {
+		Usmusuar usuar = null;
+		try {
+			// Inicia DAOS
+			initDaos();
+			// Busca el usuario en la base de datos
+			usuar = usmusuarDao.findById(userId);
+			// Clean
+			if (usuar != null) {/* Usuario encontrado */
+				usuar.cleanObject();
+			}
+			// Retorna
+			return usuar;
+		} catch (Exception e) {/* Ha ocurrido un error */
+			LogLogger.getInstance(this.getClass()).logger(
+					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
+			return null;
+		}
+	}
+
+	/**
 	 * Método para validar un usuario y su contraseña
 	 * 
 	 * @param userId

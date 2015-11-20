@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.vegadvisor.server.persistence.bo.Usmusuar;
 import com.vegadvisor.server.services.IUserServices;
 import com.vegadvisor.server.services.bo.ReturnValidation;
 import com.vegadvisor.server.utils.DateUtils;
@@ -37,6 +38,29 @@ public class UserServicesREST {
 		// Inicia servicios de usuario
 		userServices = SpringAppContext.getAppContext().getBean(
 				IUserServices.class);
+	}
+
+	/**
+	 * Busca un usuario por su Id
+	 * 
+	 * @param userId
+	 *            Id del usuario a buscar
+	 * @return Registro del usuario
+	 */
+	@POST
+	@Path("/findUserById")
+	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED,
+			MediaType.APPLICATION_JSON })
+	@Produces(MediaType.APPLICATION_JSON)
+	public Usmusuar findUserById(@FormParam("userId") String userId) {
+		LogLogger.getInstance(getClass()).logger("Inicia findUserById",
+				LogLogger.DEBUG);
+		// Validamos usuario
+		Usmusuar response = userServices.findUserById(userId);
+		LogLogger.getInstance(getClass()).logger("Finaliza findUserById",
+				LogLogger.DEBUG);
+		// Retornamos
+		return response;
 	}
 
 	/**

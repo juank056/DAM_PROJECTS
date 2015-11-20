@@ -5,6 +5,7 @@ package com.vegadvisor.server.services;
 
 import java.util.Date;
 
+import com.vegadvisor.server.persistence.bo.Usmusuar;
 import com.vegadvisor.server.services.bo.ReturnValidation;
 
 /**
@@ -14,6 +15,13 @@ import com.vegadvisor.server.services.bo.ReturnValidation;
  *
  */
 public interface IUserServices {
+	
+	/**
+	 * Metodo para obtener un usuario por su Id
+	 * @param userId Id del usuario a buscar
+	 * @return Datos del usuario
+	 */
+	public Usmusuar findUserById(String userId);
 
 	/**
 	 * Método para validar un usuario y su contraseña

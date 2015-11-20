@@ -55,11 +55,14 @@ public class BasicTableServicesREST {
 	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED,
 			MediaType.APPLICATION_JSON })
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Csptpais> getCountries(@FormParam("clue") String clue) {
+	public List<Csptpais> getCountries(
+			@FormParam("countryCode") String countryCode,
+			@FormParam("clue") String clue) {
 		LogLogger.getInstance(getClass()).logger("Inicia getCountries",
 				LogLogger.DEBUG);
 		// Ejecuta servicio
-		List<Csptpais> response = basicTablesServices.getCountries(clue);
+		List<Csptpais> response = basicTablesServices.getCountries(countryCode,
+				clue);
 		LogLogger.getInstance(getClass()).logger("Finaliza getCountries",
 				LogLogger.DEBUG);
 		// Retornamos
@@ -82,12 +85,13 @@ public class BasicTableServicesREST {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Cspciuda> getCities(
 			@FormParam("countryCode") String countryCode,
+			@FormParam("cityCode") String cityCode,
 			@FormParam("clue") String clue) {
 		LogLogger.getInstance(getClass()).logger("Inicia getCities",
 				LogLogger.DEBUG);
 		// Ejecuta servicio
 		List<Cspciuda> response = basicTablesServices.getCities(countryCode,
-				clue);
+				cityCode, clue);
 		LogLogger.getInstance(getClass()).logger("Finaliza getCities",
 				LogLogger.DEBUG);
 		// Retornamos
@@ -106,12 +110,14 @@ public class BasicTableServicesREST {
 	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED,
 			MediaType.APPLICATION_JSON })
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Csptiest> getEstablishmentTypes(@FormParam("clue") String clue) {
+	public List<Csptiest> getEstablishmentTypes(
+			@FormParam("establishmentTypeId") int establishmentTypeId,
+			@FormParam("clue") String clue) {
 		LogLogger.getInstance(getClass()).logger(
 				"Inicia getEstablishmentTypes", LogLogger.DEBUG);
 		// Ejecuta servicio
-		List<Csptiest> response = basicTablesServices
-				.getEstablishmentTypes(clue);
+		List<Csptiest> response = basicTablesServices.getEstablishmentTypes(
+				establishmentTypeId, clue);
 		LogLogger.getInstance(getClass()).logger(
 				"Finaliza getEstablishmentTypes", LogLogger.DEBUG);
 		// Retornamos
@@ -130,11 +136,14 @@ public class BasicTableServicesREST {
 	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED,
 			MediaType.APPLICATION_JSON })
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Csptieve> getEventTypes(@FormParam("clue") String clue) {
+	public List<Csptieve> getEventTypes(
+			@FormParam("eventTypeId") int eventTypeId,
+			@FormParam("clue") String clue) {
 		LogLogger.getInstance(getClass()).logger("Inicia getEventTypes",
 				LogLogger.DEBUG);
 		// Ejecuta servicio
-		List<Csptieve> response = basicTablesServices.getEventTypes(clue);
+		List<Csptieve> response = basicTablesServices.getEventTypes(
+				eventTypeId, clue);
 		LogLogger.getInstance(getClass()).logger("Finaliza getEventTypes",
 				LogLogger.DEBUG);
 		// Retornamos
