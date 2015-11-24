@@ -100,6 +100,9 @@ public class ImageServices implements IImageServices {
 			filePath += Constants.USER_IMAGE;
 			// Id del usuario
 			filePath += userId;
+			// Fecha hora
+			filePath += DateUtils.getCurrentDateTime().replace(":", "")
+					.replace("-", "");
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
 			// Quita espacios en blanco
