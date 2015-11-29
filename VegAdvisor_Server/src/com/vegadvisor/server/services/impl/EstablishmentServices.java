@@ -173,8 +173,13 @@ public class EstablishmentServices implements IEstablishmentServices {
 			// Guarda o actualiza registro en la base de datos
 			esmestabDao.saveOrUpdate(estab);
 			// Retorno
-			return new ReturnValidation(Constants.ONE,
+			ReturnValidation response=new ReturnValidation(Constants.ONE,
 					MessageBundle.getMessage("com.vegadvisor.util.msj001"));
+			//Adiciona id del establecimiento
+			response.getParams().put("establishmentId",
+					Constants.BLANKS + estab.getEstcestnk());
+			// Retorna
+			return response;
 		} catch (DAOException e) {/* Ha ocurrido algn error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
