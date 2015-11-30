@@ -149,14 +149,13 @@ public class ImageServices implements IImageServices {
 			// Id del establecimiento
 			filePath += establishmentId;
 			// Time de subida de imagen
-			filePath += Constants.DASH
-					+ DateUtils.getDateTimeString(
-							DateUtils.getCurrentUtilDate(), Constants.MINUS);
+			filePath += Constants.DASH + System.currentTimeMillis();
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
 			// Quita espacios en blanco
 			filePath = filePath
-					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
+					.replace(Constants.BLANK_SPACE, Constants.BLANKS).replace(
+							":", "");
 			// Guarda imagen en el servidor de imagenes
 			imageManager.saveFileInServer(fileStream, fileDetail, filePath);
 			// Crea registro ESDIMAES
@@ -210,14 +209,13 @@ public class ImageServices implements IImageServices {
 			filePath += DateUtils.getDateStringYYYYMMDD(opinionDate);
 			filePath += opinionSecuence;
 			// Time de subida de imagen
-			filePath += Constants.DASH
-					+ DateUtils.getDateTimeString(
-							DateUtils.getCurrentUtilDate(), Constants.MINUS);
+			filePath += Constants.DASH + System.currentTimeMillis();
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
 			// Quita espacios en blanco
 			filePath = filePath
-					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
+					.replace(Constants.BLANK_SPACE, Constants.BLANKS).replace(
+							":", "");
 			// Guarda imagen en el servidor de imagenes
 			imageManager.saveFileInServer(fileStream, fileDetail, filePath);
 			// Crea registro ESDIMOPE
@@ -275,14 +273,13 @@ public class ImageServices implements IImageServices {
 			filePath += DateUtils.getDateStringYYYYMMDD(eventDate);
 			filePath += eventSecuence;
 			// Time de subida de imagen
-			filePath += Constants.DASH
-					+ DateUtils.getDateTimeString(
-							DateUtils.getCurrentUtilDate(), Constants.MINUS);
+			filePath += Constants.DASH + System.currentTimeMillis();
 			// Extension del archivo
 			filePath += imageManager.getFileExtension(fileDetail.getFileName());
 			// Quita espacios en blanco
 			filePath = filePath
-					.replace(Constants.BLANK_SPACE, Constants.BLANKS);
+					.replace(Constants.BLANK_SPACE, Constants.BLANKS).replace(
+							":", "");
 			// Guarda imagen en el servidor de imagenes
 			imageManager.saveFileInServer(fileStream, fileDetail, filePath);
 			// Crea registro EVDIMAEV
