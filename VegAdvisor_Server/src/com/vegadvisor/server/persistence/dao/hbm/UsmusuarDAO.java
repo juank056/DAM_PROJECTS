@@ -59,7 +59,8 @@ public class UsmusuarDAO extends GenericHbmDAO<Usmusuar, String> implements
 			throws DAOException {
 		// Crea los criterios
 		List<Criterion> crit = new ArrayList<Criterion>();
-		crit.add(Restrictions.like("usucusuak", usucusuak));
+		crit.add(Restrictions.like("usucusuak", Constants.PERCENTAGE
+				+ usucusuak + Constants.PERCENTAGE));
 		crit.add(Restrictions.eq("usuiactsf", Constants.ONE));
 		return this.findByCriteria(crit);
 	}

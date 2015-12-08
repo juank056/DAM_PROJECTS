@@ -132,6 +132,7 @@ public class ChatServerManager {
 					ChatLogger.log(
 							"Error establishing connection with client: "
 									+ e.getMessage(), ChatLogger.LEVEL.ERROR);
+					e.printStackTrace();
 				}
 			}
 			// Cierra server socket
@@ -140,6 +141,7 @@ public class ChatServerManager {
 			// Escribe error
 			ChatLogger.log("Error while executing Manager: " + e.getMessage(),
 					ChatLogger.LEVEL.ERROR);
+			e.printStackTrace();
 			// Cierra server socket
 			try {
 				serverSocket.close();
@@ -157,7 +159,13 @@ public class ChatServerManager {
 	 */
 	public void notifyClient(String userIdFrom, String userIdTo) {
 		ChatLogger.log("Notifying user: " + userIdTo + ". From: " + userIdFrom,
-				ChatLogger.LEVEL.ERROR);
+				ChatLogger.LEVEL.DEBUG);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Revisa si encuentra al usuario en el mapa
 		ChatClientManager client = connectionMap.get(userIdTo);
 		if (client != null) {/* Cliente esta en el mapa */

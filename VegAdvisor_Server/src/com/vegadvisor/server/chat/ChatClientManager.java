@@ -76,6 +76,7 @@ public class ChatClientManager implements Runnable {
 		} catch (Exception e) {
 			ChatLogger.log("Error inicializing ChatClientManager. UserId: "
 					+ userId, ChatLogger.LEVEL.ERROR);
+			e.printStackTrace();
 		}
 	}
 
@@ -114,6 +115,7 @@ public class ChatClientManager implements Runnable {
 			ChatLogger.log("Error executing chat Client Manager. UserId: "
 					+ userId + " Message: " + e.getMessage(),
 					ChatLogger.LEVEL.ERROR);
+			e.printStackTrace();
 		}
 		// Cierra socket
 		try {
@@ -172,6 +174,7 @@ public class ChatClientManager implements Runnable {
 					ChatLogger.log(
 							"Error while executing output Router: "
 									+ e.getMessage(), ChatLogger.LEVEL.ERROR);
+					e.printStackTrace();
 				}
 			}
 			ChatLogger.log("This Output Router is going down. UserId: "
