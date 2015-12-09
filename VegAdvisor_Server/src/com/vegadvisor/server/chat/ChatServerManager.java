@@ -160,12 +160,6 @@ public class ChatServerManager {
 	public void notifyClient(String userIdFrom, String userIdTo) {
 		ChatLogger.log("Notifying user: " + userIdTo + ". From: " + userIdFrom,
 				ChatLogger.LEVEL.DEBUG);
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		// Revisa si encuentra al usuario en el mapa
 		ChatClientManager client = connectionMap.get(userIdTo);
 		if (client != null) {/* Cliente esta en el mapa */
