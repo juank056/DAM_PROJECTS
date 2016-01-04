@@ -173,9 +173,9 @@ public class EstablishmentServices implements IEstablishmentServices {
 			// Guarda o actualiza registro en la base de datos
 			esmestabDao.saveOrUpdate(estab);
 			// Retorno
-			ReturnValidation response=new ReturnValidation(Constants.ONE,
+			ReturnValidation response = new ReturnValidation(Constants.ONE,
 					MessageBundle.getMessage("com.vegadvisor.util.msj001"));
-			//Adiciona id del establecimiento
+			// Adiciona id del establecimiento
 			response.getParams().put("establishmentId",
 					Constants.BLANKS + estab.getEstcestnk());
 			// Retorna
@@ -282,8 +282,9 @@ public class EstablishmentServices implements IEstablishmentServices {
 				// Recorre opiniones
 				for (Esdopies opinion : opiess) {
 					// Revisa si son de la misma fecha
-					if (DateUtils.getDateStringYYYYMMDD(day).equals(
-							opinion.getId().getOesfregfk())) {
+					if (DateUtils.getDateString(day).equals(
+							DateUtils.getDateString(opinion.getId()
+									.getOesfregfk()))) {
 						// Misma fecha
 						// Incluye estrellas de opinion
 						statistic.getOpinionStars().add(opinion.getOesnestnf());
@@ -292,8 +293,9 @@ public class EstablishmentServices implements IEstablishmentServices {
 				// Recorre Checkins
 				for (Usdcheus cheus : cheuss) {
 					// Revisa si son de la misma fecha
-					if (DateUtils.getDateStringYYYYMMDD(day).equals(
-							cheus.getId().getChufregfk())) {
+					if (DateUtils.getDateString(day).equals(
+							DateUtils.getDateString(cheus.getId()
+									.getChufregfk()))) {
 						// Misma fecha
 						// Incrementa checkin
 						statistic.setCheckins(statistic.getCheckins() + 1);
