@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 
+import com.vegadvisor.server.persistence.dao.ICsptieveDAO;
+import com.vegadvisor.server.persistence.dao.IEsmestabDAO;
 import com.vegadvisor.server.persistence.dao.IEvdimaevDAO;
+import com.vegadvisor.server.utils.Constants;
 import com.vegadvisor.server.utils.LogLogger;
 import com.vegadvisor.server.utils.SpringAppContext;
 
@@ -35,6 +38,10 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	private String userParticipating;
 	// Imagenes del evento
 	private List<Evdimaev> images;
+	// Nombre del establecimiento
+	private String establishmentName;
+	// Nombre de tipo de evento
+	private String eventTypeName;
 
 	public Evmevent() {
 	}
@@ -108,7 +115,7 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 		this.evelatinf = evelatinf;
 	}
 
-	public double getevelongnf() {
+	public double getEvelongnf() {
 		return this.evelongnf;
 	}
 
@@ -185,6 +192,36 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 		this.eveiactsf = eveiactsf;
 	}
 
+	/**
+	 * @return the establishmentName
+	 */
+	public String getEstablishmentName() {
+		return establishmentName;
+	}
+
+	/**
+	 * @param establishmentName
+	 *            the establishmentName to set
+	 */
+	public void setEstablishmentName(String establishmentName) {
+		this.establishmentName = establishmentName;
+	}
+
+	/**
+	 * @return the eventTypeName
+	 */
+	public String getEventTypeName() {
+		return eventTypeName;
+	}
+
+	/**
+	 * @param eventTypeName
+	 *            the eventTypeName to set
+	 */
+	public void setEventTypeName(String eventTypeName) {
+		this.eventTypeName = eventTypeName;
+	}
+
 	@Override
 	public EvmeventId getPrimaryKey() {
 		return id;
@@ -193,13 +230,37 @@ public class Evmevent implements java.io.Serializable, AbstractBO<EvmeventId> {
 	@Override
 	public void cleanObject() {
 		try {
+			// Campos por defecto
+			establishmentName = Constants.BLANKS;
+			eventTypeName = Constants.BLANKS;
 			// DAO para leer EVDIMAEV
 			IEvdimaevDAO evdimaevDao = SpringAppContext.getAppContext()
 					.getBean(IEvdimaevDAO.class);
 			// Carga imagenes
 			images = evdimaevDao.findByEvent(id.getPaicpaiak(),
 					id.getCiucciuak(), id.getEvefevefk(), id.getEvecevenk());
-			;
+			// DAO para leer ESMESTAB
+			IEsmestabDAO esmestabDao = SpringAppContext.getAppContext()
+					.getBean(IEsmestabDAO.class);
+			if (estcestnk != 0) {
+				// Obtiene establecimiento
+				Esmestab estab = esmestabDao.findById(estcestnk);
+				if (estab != null) {
+					estab.cleanObject();
+					establishmentName = estab.getEstnestaf();
+				}
+			}
+			// DAO para leer CSPTIEVE
+			ICsptieveDAO csptieveDao = SpringAppContext.getAppContext()
+					.getBean(ICsptieveDAO.class);
+			if (tevctevnk != 0) {
+				// Obtiene tipo evento
+				Csptieve tieve = csptieveDao.findById(tevctevnk);
+				if (tieve != null) {
+					tieve.cleanObject();
+					eventTypeName = tieve.getTevdtesaf();
+				}
+			}
 		} catch (Exception e) {/* Error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);

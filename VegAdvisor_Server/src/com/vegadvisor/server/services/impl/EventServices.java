@@ -19,6 +19,7 @@ import com.vegadvisor.server.persistence.dao.IEvmeventDAO;
 import com.vegadvisor.server.services.IEventServices;
 import com.vegadvisor.server.services.bo.ReturnValidation;
 import com.vegadvisor.server.utils.Constants;
+import com.vegadvisor.server.utils.DateUtils;
 import com.vegadvisor.server.utils.LogLogger;
 import com.vegadvisor.server.utils.MessageBundle;
 import com.vegadvisor.server.utils.SpringAppContext;
@@ -158,7 +159,7 @@ public class EventServices implements IEventServices {
 			// Localizacion evento
 			event.setEstloceaf(placeName);
 			// Latitud evento
-			event.setEvelatinf(longitud);
+			event.setEvelatinf(latitud);
 			// Longitud evento
 			event.setEvelongnf(longitud);
 			// Tipo de evento
@@ -172,8 +173,19 @@ public class EventServices implements IEventServices {
 			// Guarda registro en la base de datos
 			evmeventDao.save(event);
 			// Retorno
-			return new ReturnValidation(Constants.ONE,
+			ReturnValidation response = new ReturnValidation(Constants.ONE,
 					MessageBundle.getMessage("com.vegadvisor.util.msj001"));
+			// Parametro de llave
+			response.getParams().put("paicpaiak", event.getId().getPaicpaiak());
+			response.getParams().put("ciucciuak", event.getId().getCiucciuak());
+			response.getParams().put(
+					"evefevefk",
+					DateUtils.getDateStringYYYYMMDD(event.getId()
+							.getEvefevefk()));
+			response.getParams().put("evecevenk",
+					Constants.BLANKS + event.getId().getEvecevenk());
+			// Retorna respuesta
+			return response;
 		} catch (DAOException e) {/* Ha ocurrido algn error */
 			LogLogger.getInstance(this.getClass()).logger(
 					ExceptionUtils.getFullStackTrace(e), LogLogger.ERROR);
